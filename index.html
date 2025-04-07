@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Lakshan Bandara's articles - Buddhist teachings, lifestyle tips, and more">
     <title>Lakshan Bandara - Knowledge</title>
     <!-- Favicon link -->
@@ -20,6 +20,7 @@
             color: #333;
             overflow-x: hidden;
             background-color: #fafafa;
+            width: 100%;
         }
 
         html {
@@ -32,7 +33,7 @@
             color: black;
             text-align: center;
             display: flex;
-			padding: 0rem; 
+            padding: 0rem; 
             align-items: center;
             justify-content: center;
             flex-wrap: wrap;
@@ -40,6 +41,7 @@
             min-height: 20vh;
             position: relative;
         }
+        
         header img {
             position: absolute;
             top: 0;
@@ -98,6 +100,7 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2rem;
+            width: 100%;
         }
 
         /* Page title section with animation */
@@ -368,10 +371,13 @@
             max-width: 500px;
             margin: 0 auto;
             gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .newsletter-input {
             flex: 1;
+            min-width: 200px;
             padding: 0.8rem 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
@@ -483,36 +489,75 @@
             width: 40px;
             height: 40px;
         }
-
-        /* Responsive Design */
+        
+        /* Improved Responsive Design */
         @media (max-width: 768px) {
+            header {
+                padding: 1rem 0;
+                min-height: auto;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            header img {
+                position: relative;
+                max-height: 60px;
+                margin: 0 auto 0.5rem auto;
+            }
+            
+            header h1 {
+                font-size: 1.5rem;
+                margin-top: 0.5rem;
+            }
+            
             .articles-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
-        }
-			header img {
-                max-height: 100px;
+            
+            .page-title h1 {
+                font-size: 1.8rem;
             }
-		header {
-			padding: 0rem;
-			}
+            
+            #searchInput {
+                width: 90% !important;
+                margin: 0 auto;
+            }
+            
+            .filter-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .newsletter {
+                padding: 1.5rem;
+            }
+        }
+
         @media (max-width: 480px) {
+            body {
+                width: 100%;
+            }
+            
+            main {
+                padding: 1rem;
+            }
+            
             .articles-grid {
                 grid-template-columns: 1fr;
             }
 
             .page-title h1 {
-                font-size: 2rem;
+                font-size: 1.5rem;
             }
-
-            .filters {
-                flex-direction: column;
-                align-items: center;
+            
+            .page-title p {
+                font-size: 0.9rem;
             }
 
             .filter-btn {
                 width: 100%;
                 text-align: center;
+                margin-bottom: 0.5rem;
             }
 
             .back-to-top {
@@ -521,13 +566,21 @@
                 width: 40px;
                 height: 40px;
             }
-        }
-			header img {
-                max-height: 100px;
+            
+            .newsletter-form {
+                flex-direction: column;
             }
-		header {
-			padding: 0rem;
-			}
+            
+            .newsletter-input {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+            
+            .filter-btn {
+                font-size: 0.75rem;
+                padding: 0.5rem 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -537,17 +590,16 @@
         <div>
             <h1>Lakshan Bandara</h1>
             <p>"Believe you can and you're halfway there"</p>
-			</div>
         </div>
     </header>
-	
+    
     <main>
         <section class="page-title">
             <h1>General Knowledge Articles</h1>
-            <p>Discover a collection of thought-provoking  on General Knowledge Articles Expand your knowledge</p>
-			<!-- Search Bar -->
-			  <input type="text" id="searchInput" placeholder="Search articles..." 
-					 style="padding: 10px 15px; width: 300px; max-width: 100%; border: 1px solid #ccc; border-radius: 25px; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;">
+            <p>Discover a collection of thought-provoking on General Knowledge Articles Expand your knowledge</p>
+            <!-- Search Bar -->
+            <input type="text" id="searchInput" placeholder="Search articles..." 
+                   style="padding: 10px 15px; width: 300px; max-width: 100%; border: 1px solid #ccc; border-radius: 25px; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;">
         </section>
 
         <div class="filters">
@@ -555,8 +607,8 @@
             <button class="filter-btn" onclick="window.location.href='buddhism.html'">Buddhism</button>
             <button class="filter-btn" onclick="window.location.href='science&tech.html'">Science & Tech</button>
             <button class="filter-btn active" onclick="window.location.href='knowledge.html'">Genaral knowledge</button>
-			<button class="filter-btn" onclick="window.location.href='motivation.html'">Movies</button>
-			<button class="filter-btn" onclick="window.location.href='contact me.html'">Contact Me</button>
+            <button class="filter-btn" onclick="window.location.href='motivation.html'">Movies</button>
+            <button class="filter-btn" onclick="window.location.href='contact me.html'">Contact Me</button>
         </div>
 
         <div class="articles-grid">
@@ -572,113 +624,9 @@
                     <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_1" class="read-more">Read More</a>
                 </div>
             </div>
-
-            <!-- Article 2 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/481661267_1182145223921790_8712585928430435344_n.jpg?updatedAt=1743869009376')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.05.09</div>
-                    <h3 class="article-title">''මී පැණි වල ගිල්ලපු සුදුලුනු වල ගුන''</h3>
-                    <p class="article-excerpt">මී පැණි වල ගිල්වපු සුදුලූණු එහෙමත් නැත්නම් Garlic Haney කියන්නේ අපේ රටේ වැඩිය ජනප්‍රිය නැති උනත් සමහර රටවල් වල නම් ඉතාම ජනප්‍රිය කෑමක්.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other3/00_10" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 3 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/images%20(1).jpg?updatedAt=1743869064716')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.07.14</div>
-                    <h3 class="article-title">''මිස්ටර් බීන්'' (රෝවන් ඇට්කින්සන්)''</h3>
-                    <p class="article-excerpt">තම සිහින කිසිදා අත් නොහරින මිනිසාගේ කතාව.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other3/00_8" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 4 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-10-26.jpg?updatedAt=1743849375973')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.06.23</div>
-                    <h3 class="article-title">''උදෑසන ප්‍රමාදයකින් තොරව අවදිවීමට උපක්‍රමයක්''</h3>
-                    <p class="article-excerpt">බොහෝ දෙනෙක් උදෑසන ප්‍රමාදයකින් තොරව අවදිවීම සඳහා එලාම් එකක් තබා නිදාගන්න ට පුරුදු වෙලා ඉන්නවා.. එසේ එලාම් එකක් තබා නිදාගත්තද, උදෑසන එලාම් එක නාද වන විට එය ඕෆ් කර නැවත නිදා ගැනීම අපි හැමෝම වගේ සිදු කරන දෙයක්...</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_2" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 5 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-14-20.jpg?updatedAt=1743849375575')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.08.22</div>
-                    <h3 class="article-title">''ලොව මිල අධිකම දියරය  🧪''</h3>
-                    <p class="article-excerpt">ලොව අධිකම වටිනාකමක් ඇති දියරය ලෙස ගෝණුසු විෂ හදුන්වන්නට පුළුවන්.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_4" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 6 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-17-49.jpg?updatedAt=1743849375582')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.09.28</div>
-                    <h3 class="article-title">''තලපත් - කාලා තිබුනට දැකල නෑනෙ ?''</h3>
-                    <p class="article-excerpt">අපි එදිනෙදා කෑමට ගන්න කෑලි-මාලු වර්ගවලින් ගොඩක් ප්‍රචලිත වර්ගයක් තමයි තලපත් කියන්නෙ. ගොඩක් වෙලාවට වෙළඳපළේ දැක්කත් සම්පුර්ණ මාලුවව ගොඩක් දෙනෙක් දැකල නැතුව ඇති.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_5" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 7 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-12-37.jpg?updatedAt=1743849376292')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.10.12</div>
-                    <h3 class="article-title">''ලොව වේගවත්ම ගිලන් රථය''</h3>
-                    <p class="article-excerpt">එක්සත් අරාබි එමිරේට්ස් රාජ්‍යය ලොව වේගවත්ම සහ මිල අධිකම ගිලන්රථය හඳුන්වා දීමට කටයුතු කර ඇති බව වර්තා වෙනවා.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_3" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 8 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-22-51.jpg?updatedAt=1743849383134')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.11.23</div>
-                    <h3 class="article-title">''ගීසා පිරමීඩ ගැන අහල තියෙනවද?''</h3>
-                    <p class="article-excerpt">නයිල් ගඟේ බටහිර ඉවුරේ වර්තමාන කයිරෝවේ පිහිටා තිබෙන මේ පිරමීඩ 3 ලෝකයේ විශාලම පිරමීඩයි. ඒ වගේම මේවා දළ වශයෙන් අවුරුදු 4000ක් විතර පරණයි.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_7" class="read-more">Read More</a>
-                </div>
-            </div>
-
-            <!-- Article 9 -->
-            <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-24-01.jpg?updatedAt=1743849385649')">
-                    <span class="article-category">General Knowledge</span>
-                </div>
-                <div class="article-content">
-                    <div class="article-date">2024.12.16</div>
-                    <h3 class="article-title">''සුදුපාට වැලි තියෙන කාන්තාරය''</h3>
-                    <p class="article-excerpt">ඇමෙරිකා එක්සත් ජනපදයේ නිව් මෙක්සිකෝ ප්‍රාන්තයේ ශ්වේත වාලුකා කාන්තාරය (White Sands Desert) නමින් හැදින්වෙන මෙම කාන්තාරයේ තියෙන විශේෂත්වය තමයි මුළු කන්තාර භූමියම ඉතා අලංකාර සුදෝ සුදු පැහැයක් ගැනීම.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_8" class="read-more">Read More</a>
-                </div>
-            </div>
         </div>
-		
-		<div class="pagination">
+        
+        <div class="pagination">
             <div class="page-item" onclick="window.location.href='knowledge.html'">1</div>
             <div class="page-item" onclick="window.location.href='knowledge-2.html'">2</div>
             <div class="page-item" onclick="window.location.href='knowledge-3.html'">3</div>
@@ -699,63 +647,63 @@
     <div class="back-to-top">↑</div>
 
     <footer>
-		<p>© 2025 Lakshan Bandara. All rights reserved.</p>
-		<p>Follow us on social media for daily inspiration and updates</p>
-		
-		<div class="social-icons">
-			<a href="https://wa.me/+94768855659" target="_blank">
-				<img src="https://cdn.cdnlogo.com/logos/w/29/whatsapp-icon.svg" alt="WhatsApp">
-			</a>
-			<a href="https://www.facebook.com/lakshan.bandara" target="_blank">
-				<img src="https://cdn.cdnlogo.com/logos/f/91/facebook-icon.svg" alt="Facebook">
-			</a>
-			<a href="https://www.instagram.com/lakshan_bandara/" target="_blank">
-				<img src="https://cdn.cdnlogo.com/logos/i/92/instagram.svg" alt="Instagram">
-			</a>
-			<a href="https://twitter.com/lakshanbandara" target="_blank">
-				<img src="https://cdn.cdnlogo.com/logos/t/96/twitter-icon.svg" alt="Twitter">
-			</a>
-			<a href="https://www.youtube.com/channel/lakshanbandara" target="_blank">
-				<img src="https://cdn.cdnlogo.com/logos/y/57/youtube-icon.svg" alt="YouTube">
-			</a>
-		</div>
-		<p class="footer-links">
-			<a href="index6_contact me.html">Contact</a> | 
-			<a href="privacy-policy.html">Privacy Policy</a> | 
-			<a href="terms-of-service.html">Terms of Service</a>
-		</p>
-	</footer>
+        <p>© 2025 Lakshan Bandara. All rights reserved.</p>
+        <p>Follow us on social media for daily inspiration and updates</p>
+        
+        <div class="social-icons">
+            <a href="https://wa.me/+94768855659" target="_blank">
+                <img src="https://cdn.cdnlogo.com/logos/w/29/whatsapp-icon.svg" alt="WhatsApp">
+            </a>
+            <a href="https://www.facebook.com/lakshan.bandara" target="_blank">
+                <img src="https://cdn.cdnlogo.com/logos/f/91/facebook-icon.svg" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/lakshan_bandara/" target="_blank">
+                <img src="https://cdn.cdnlogo.com/logos/i/92/instagram.svg" alt="Instagram">
+            </a>
+            <a href="https://twitter.com/lakshanbandara" target="_blank">
+                <img src="https://cdn.cdnlogo.com/logos/t/96/twitter-icon.svg" alt="Twitter">
+            </a>
+            <a href="https://www.youtube.com/channel/lakshanbandara" target="_blank">
+                <img src="https://cdn.cdnlogo.com/logos/y/57/youtube-icon.svg" alt="YouTube">
+            </a>
+        </div>
+        <p class="footer-links">
+            <a href="index6_contact me.html">Contact</a> | 
+            <a href="privacy-policy.html">Privacy Policy</a> | 
+            <a href="terms-of-service.html">Terms of Service</a>
+        </p>
+    </footer>
 
-	<!-- Back to top button script -->
-	<script>
-		// Back to top button functionality
-		const backToTopButton = document.querySelector('.back-to-top');
-		
-		window.addEventListener('scroll', () => {
-			if (window.pageYOffset > 300) {
-				backToTopButton.classList.add('visible');
-			} else {
-				backToTopButton.classList.remove('visible');
-			}
-		});
-		
-		backToTopButton.addEventListener('click', () => {
-			window.scrollTo({
-				top: 0,
-				behavior: 'smooth'
-			});
-		});
-		const searchInput = document.getElementById('searchInput');
-		  const articles = document.querySelectorAll('.article-card');
+    <!-- Back to top button script -->
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.querySelector('.back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('visible');
+            } else {
+                backToTopButton.classList.remove('visible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        const searchInput = document.getElementById('searchInput');
+        const articles = document.querySelectorAll('.article-card');
 
-		  searchInput.addEventListener('input', function () {
-			const value = this.value.toLowerCase();
-			articles.forEach(article => {
-			  const text = article.textContent.toLowerCase();
-			  article.style.display = text.includes(value) ? 'block' : 'none';
-			});
-		  });
-	</script>
-
-	</body>
-	</html>
+        searchInput.addEventListener('input', function () {
+            const value = this.value.toLowerCase();
+            articles.forEach(article => {
+                const text = article.textContent.toLowerCase();
+                article.style.display = text.includes(value) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
