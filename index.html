@@ -485,18 +485,24 @@
             height: 40px;
         }
 
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
+        /* Media Queries for responsiveness */
+        @media (max-width: 1200px) {
             .articles-grid {
                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 			header img {
-                max-height: 100px;
+                max-height: 50px;
             }
-			
-			padding: 0rem; {
-			}
+		/* Responsive Design */
+        @media (max-width: 768px) {
+            .articles-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+			header img {
+                max-height: 200px;
+            }
 
         @media (max-width: 480px) {
             .articles-grid {
