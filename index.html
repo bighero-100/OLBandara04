@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Lakshan Bandara's articles - Buddhist teachings, lifestyle tips, and more">
-    <title>Lakshan Bandara - Articles</title>
+    <title>Lakshan Bandara - Knowledge</title>
     <!-- Favicon link -->
     <link rel="icon" href="https://iili.io/35Gp7st.jpg" type="image/x-icon">
     <style>
@@ -58,7 +58,43 @@
             font-style: italic;
             margin-top: 0;
         }
-		
+
+        nav {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        nav a:hover {
+            background: #1a1c47;
+            color: white;
+            transform: scale(1.1);
+        }
+
         main {
             max-width: 1200px;
             margin: 0 auto;
@@ -143,13 +179,13 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transform: translateY(-2px);
         }
-		
-		.filter-btn.active {
+
+        .filter-btn.active {
             background: linear-gradient(#ebb671);
             color: black;
             border-color:#ebb671;
-		}
-		
+        }
+
         /* Articles grid with masonry layout */
         .articles-grid {
             display: grid;
@@ -456,12 +492,12 @@
             }
         }
 			header img {
-                max-height: 200px;
+                max-height: 150px;
             }
-	    
-	    padding: 0rem; {
-	    }
 			
+			padding: 0rem; {
+			}
+
         @media (max-width: 480px) {
             .articles-grid {
                 grid-template-columns: 1fr;
@@ -488,21 +524,6 @@
                 height: 40px;
             }
         }
-		
-		.article-card {
-		padding: 15px;
-		margin-bottom: 10px;
-		background: #f7f7f7;
-		border-radius: 10px;
-		font-size: 16px;
-	  }
-
-	  input[type="text"]:focus {
-		border-color: #007BFF;
-		box-shadow: 0 0 5px rgba(0,123,255,0.5);
-		outline: none;
-	  }
-	  
     </style>
 </head>
 <body>
@@ -515,21 +536,21 @@
 			</div>
         </div>
     </header>
-
+	
     <main>
         <section class="page-title">
-            <h1>Explore Articles</h1>
-            <p>Discover a collection of thought-provoking articles on Buddhism, lifestyle, science, technology, and more. Expand your knowledge and find inspiration.</p>
+            <h1>General Knowledge Articles</h1>
+            <p>Discover a collection of thought-provoking  on General Knowledge Articles Expand your knowledge</p>
 			<!-- Search Bar -->
 			  <input type="text" id="searchInput" placeholder="Search articles..." 
 					 style="padding: 10px 15px; width: 300px; max-width: 100%; border: 1px solid #ccc; border-radius: 25px; font-size: 14px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); transition: all 0.3s;">
         </section>
 
         <div class="filters">
-            <button class="filter-btn active" onclick="window.location.href='index.html'">Latest Articles</button>
+            <button class="filter-btn" onclick="window.location.href='index.html'">Latest Articles</button>
             <button class="filter-btn" onclick="window.location.href='buddhism.html'">Buddhism</button>
             <button class="filter-btn" onclick="window.location.href='science&tech.html'">Science & Tech</button>
-            <button class="filter-btn" onclick="window.location.href='knowledge.html'">Genaral knowledge</button>
+            <button class="filter-btn active" onclick="window.location.href='knowledge.html'">Genaral knowledge</button>
 			<button class="filter-btn" onclick="window.location.href='motivation.html'">Movies</button>
 			<button class="filter-btn" onclick="window.location.href='contact me.html'">Contact Me</button>
         </div>
@@ -537,126 +558,126 @@
         <div class="articles-grid">
             <!-- Article 1 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/MahaPurushaLakshana.jpg?updatedAt=1743867160199')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-05-41.jpg?updatedAt=1743849377816')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.01.04</div>
-                    <h3 class="article-title">''අප භාග්‍යවතුන් වහන්සේගේ දෙතිස් මහා පුරුෂ ලක්ෂණ''</h3>
-                    <p class="article-excerpt">ඒ භාග්‍යවත් වූ අර්හත් වූ සම්මා සම්බුදු රජාණන් වහන්සේට නමස්කාර වේවා! බුදුරජාණන් වහන්සේ කෙරෙහි විශේෂ ගුණ ලක්ෂණ තිබේ. ඒවා අතර දෙතිස් මහා පුරුෂ ලක්ෂණ ප්‍රධාන වේ.</p>
-                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other3/00_1" class="read-more">Read More</a>
+                    <h3 class="article-title">''කණ්ඩලම වැව් තාවුල්ලේ නිමවූ විශිෂ්ට නිර්මාණය''</h3>
+                    <p class="article-excerpt">කණ්ඩලම වැව් තාවුල්ලේ නිමවූ ජෙෆ්රි බාවා මහතාගේ විශිෂ්ට නිර්මාණය - (Heritance Kandalama) ☘️😍👣♥️</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_1" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 2 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/buddha-statue.webp?updatedAt=1743867158043')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/481661267_1182145223921790_8712585928430435344_n.jpg?updatedAt=1743869009376')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.05.09</div>
-                    <h3 class="article-title">''බුදුරජාණන් වහන්සේගේ මහා කරුණාව''</h3>
-                    <p class="article-excerpt">කරුණාව යනු අනුන්ගේ දුකෙහි දී හදවත කම්පා වීමයි. බුදුරජාණන් වහන්සේ මතු නොව ඉපැරණි බුදුවරුන්ගේද විශේෂ ගුණය වූයේ මහා කරුණාවයි.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/great-kindness" class="read-more">Read More</a>
+                    <h3 class="article-title">''මී පැණි වල ගිල්ලපු සුදුලුනු වල ගුන''</h3>
+                    <p class="article-excerpt">මී පැණි වල ගිල්වපු සුදුලූණු එහෙමත් නැත්නම් Garlic Haney කියන්නේ අපේ රටේ වැඩිය ජනප්‍රිය නැති උනත් සමහර රටවල් වල නම් ඉතාම ජනප්‍රිය කෑමක්.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other3/00_10" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 3 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/buduguna-sathyakriyawa_blog-1.webp?updatedAt=1743867157624')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/images%20(1).jpg?updatedAt=1743869064716')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.07.14</div>
-                    <h3 class="article-title">"අනුහස් පිරුණු සත්‍යක්‍රියාව"</h3>
-                    <p class="article-excerpt">ඒ භාග්‍යවත් වූ අර්හත් වූ සම්මා සම්බුදු රජාණන් වහන්සේට නමස්කාර වේවා! සත්‍යක්‍රියාව යනු සත්‍ය බලය මතු කිරීමෙන් කෙරෙන ප්‍රාර්ථනාවකි.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sathyakriyawa" class="read-more">Read More</a>
+                    <h3 class="article-title">''මිස්ටර් බීන්'' (රෝවන් ඇට්කින්සන්)''</h3>
+                    <p class="article-excerpt">තම සිහින කිසිදා අත් නොහරින මිනිසාගේ කතාව.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other3/00_8" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 4 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/man_namaste_hands1.png?updatedAt=1743867652762')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-10-26.jpg?updatedAt=1743849375973')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.06.23</div>
-                    <h3 class="article-title">''තුති පූජාව''</h3>
-                    <p class="article-excerpt">තුති පූජාව මහත් ආනිශංස ගෙන දෙන්නක් ය. බුදුරජාණන් වහන්සේගේ ගුණ සිහිපත් කරමින් කෙරෙන තුති පූජාව විශේෂ ආනිසංස ගෙන දෙයි.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/2/1_4" class="read-more">Read More</a>
+                    <h3 class="article-title">''උදෑසන ප්‍රමාදයකින් තොරව අවදිවීමට උපක්‍රමයක්''</h3>
+                    <p class="article-excerpt">බොහෝ දෙනෙක් උදෑසන ප්‍රමාදයකින් තොරව අවදිවීම සඳහා එලාම් එකක් තබා නිදාගන්න ට පුරුදු වෙලා ඉන්නවා.. එසේ එලාම් එකක් තබා නිදාගත්තද, උදෑසන එලාම් එක නාද වන විට එය ඕෆ් කර නැවත නිදා ගැනීම අපි හැමෝම වගේ සිදු කරන දෙයක්...</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_2" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 5 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/BuddhaStatue.jpg?updatedAt=1743867160478')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-14-20.jpg?updatedAt=1743849375575')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.08.22</div>
-                    <h3 class="article-title">"සසර පින පතළ කළ අසම සම රූ මහිම"</h3>
-                    <p class="article-excerpt">බුදුරජාණන් වහන්සේ නමක් ලෝකයට පහළ වීමට පෙර ලෝකයේ 'බුද්ධ කෝලාහලයක්' පැතිරී යනවා. මේ සාරාසංඛ්‍ය කල්ප ලක්ෂයක් මුළුල්ලේ පුරපු පාරමිතා ඇති සත්වයෙක් බුදුවීමට සූදානම් වන නිසා.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_02" class="read-more">Read More</a>
+                    <h3 class="article-title">''ලොව මිල අධිකම දියරය  🧪''</h3>
+                    <p class="article-excerpt">ලොව අධිකම වටිනාකමක් ඇති දියරය ලෙස ගෝණුසු විෂ හදුන්වන්නට පුළුවන්.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_4" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 6 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/Sathuta.jpg?updatedAt=1743867163085')">
-                    <span class="article-category">Lifestyle</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-17-49.jpg?updatedAt=1743849375582')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.09.28</div>
-                    <h3 class="article-title">සැපතත් සතුටත් ඇත්තේ වෛරය නැති තැනයි</h3>
-                    <p class="article-excerpt">මේ ලෝකයෙහි විවිධ සත්ව තල තිබේ. බුදුරදුන් වදාළේ සත්තාවාස හෙවත් විවිධ ස්වභාවයෙන් යුතු සත්ව තල නවයක් තිබෙන බවයි. ඔවුන් අතර වෛරය අඩු වූ තැන සැප සතුට දැකිය හැකිය.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_04" class="read-more">Read More</a>
+                    <h3 class="article-title">''තලපත් - කාලා තිබුනට දැකල නෑනෙ ?''</h3>
+                    <p class="article-excerpt">අපි එදිනෙදා කෑමට ගන්න කෑලි-මාලු වර්ගවලින් ගොඩක් ප්‍රචලිත වර්ගයක් තමයි තලපත් කියන්නෙ. ගොඩක් වෙලාවට වෙළඳපළේ දැක්කත් සම්පුර්ණ මාලුවව ගොඩක් දෙනෙක් දැකල නැතුව ඇති.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_5" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 7 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/2015-12-19-Kshana-Sampaththiya.webp?updatedAt=1743867156234')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-12-37.jpg?updatedAt=1743849376292')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.10.12</div>
-                    <h3 class="article-title">මොකක්ද මේ ක්ෂණ සම්පත්තිය?</h3>
-                    <p class="article-excerpt">ක්ෂණය යනු මොහොතකි. එ් මොහොත සැණෙකින් ගිලිහී යා හැකිය. බුදුරජාණන් වහන්සේ දේශනා කළේ ක්ෂණ සම්පත්තිය ලබා ගැනීම දුර්ලභ බවයි.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/kshana-sampaththiya" class="read-more">Read More</a>
+                    <h3 class="article-title">''ලොව වේගවත්ම ගිලන් රථය''</h3>
+                    <p class="article-excerpt">එක්සත් අරාබි එමිරේට්ස් රාජ්‍යය ලොව වේගවත්ම සහ මිල අධිකම ගිලන්රථය හඳුන්වා දීමට කටයුතු කර ඇති බව වර්තා වෙනවා.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_3" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 8 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/Mahameunawa%20images/Chaththa-Manawaka-1.webp?updatedAt=1743867156983')">
-                    <span class="article-category">Buddhism</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-22-51.jpg?updatedAt=1743849383134')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.11.23</div>
-                    <h3 class="article-title">දෙව් සැප ලැබූ ඡත්ත මානවක දිව්‍යපුත්‍රයා</h3>
-                    <p class="article-excerpt">ඔහු විසුවේ සේතව්‍ය නුවරයි. ඡත්ත ඔහුගේ නමයි. බුදුරජාණන් වහන්සේට පූජා කිරීමෙන් ඔහු දිව්‍ය ලෝකයට උපන් ආකාරය මෙම ලිපියෙන් කියැවේ.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_05" class="read-more">Read More</a>
+                    <h3 class="article-title">''ගීසා පිරමීඩ ගැන අහල තියෙනවද?''</h3>
+                    <p class="article-excerpt">නයිල් ගඟේ බටහිර ඉවුරේ වර්තමාන කයිරෝවේ පිහිටා තිබෙන මේ පිරමීඩ 3 ලෝකයේ විශාලම පිරමීඩයි. ඒ වගේම මේවා දළ වශයෙන් අවුරුදු 4000ක් විතර පරණයි.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_7" class="read-more">Read More</a>
                 </div>
             </div>
 
             <!-- Article 9 -->
             <div class="article-card">
-                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/img_9711.jpg?updatedAt=1743867659904')">
-                    <span class="article-category">Knowledge</span>
+                <div class="article-image" style="background-image: url('https://ik.imagekit.io/bcd8ygetu/photo_2025-03-24_21-24-01.jpg?updatedAt=1743849385649')">
+                    <span class="article-category">General Knowledge</span>
                 </div>
                 <div class="article-content">
                     <div class="article-date">2024.12.16</div>
-                    <h3 class="article-title">අසිරිමත් ස්වර්ණමාලී මහා සෑ ඉතිහාසයෙන්</h3>
-                    <p class="article-excerpt">මෙම මහා භද්‍ර කල්පයේ සතර වැනි සම්මාසම්බුදු රජුන් ලෙස පහළ වූ අපගේ ගෞතම බුදුරජාණන් වහන්සේ ගැන සහ ස්වර්ණමාලී මහා සෑය ගැන විස්තර සොයා යමු.</p>
-                    <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_01" class="read-more">Read More</a>
+                    <h3 class="article-title">''සුදුපාට වැලි තියෙන කාන්තාරය''</h3>
+                    <p class="article-excerpt">ඇමෙරිකා එක්සත් ජනපදයේ නිව් මෙක්සිකෝ ප්‍රාන්තයේ ශ්වේත වාලුකා කාන්තාරය (White Sands Desert) නමින් හැදින්වෙන මෙම කාන්තාරයේ තියෙන විශේෂත්වය තමයි මුළු කන්තාර භූමියම ඉතා අලංකාර සුදෝ සුදු පැහැයක් ගැනීම.</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_8" class="read-more">Read More</a>
                 </div>
             </div>
         </div>
-
-        <div class="pagination">
-            <div class="page-item" onclick="window.location.href='index.html'">1</div>
-            <div class="page-item">2</div>
-            <div class="page-item">3</div>
+		
+		<div class="pagination">
+            <div class="page-item" onclick="window.location.href='knowledge.html'">1</div>
+            <div class="page-item" onclick="window.location.href='knowledge-2.html'">2</div>
+            <div class="page-item" onclick="window.location.href='knowledge-3.html'">3</div>
             <div class="page-item">4</div>
             <div class="page-item">→</div>
         </div>
@@ -720,7 +741,6 @@
 				behavior: 'smooth'
 			});
 		});
-		
 		const searchInput = document.getElementById('searchInput');
 		  const articles = document.querySelectorAll('.article-card');
 
