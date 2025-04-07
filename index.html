@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Lakshan Bandara's personal blog sharing articles on Buddhism, lifestyle, science, and more">
+    <title>Lakshan Bandara</title>
+    <!-- Favicon link -->
+    <link rel="icon" href="https://iili.io/35Gp7st.jpg" type="image/x-icon">
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+            width: 100%;
+        }
+
+        header {
+            background: linear-gradient(to right, #6f98e8, #e4e86f);
+            color: black;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+            min-height: 20vh;
+            position: relative;
+        }
+
+        header img {
+            position: right;
+            top: 0;
+            left: 0;
+            max-height: 65px;
+            margin-right: 1rem;
+        }
+
+        header h1 {
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+
+        header p {
+            font-style: italic;
+            margin-top: 0;
+        }
+
+        nav {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            border-bottom: 1px solid #dee2e6;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: flex-start;
+            gap: 1rem;
+            flex-wrap: nowrap;
+            width: max-content;
+            min-width: 100%;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+            transition: all 0.3s ease-in-out;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        nav a:hover {
+            background: #1a1c47;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .hero {
+            background: transparent;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        main {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            width: 100%;
+            margin: auto;
+            padding: 1rem;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .schedule {
+            background: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule h3 {
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .schedule ul {
+            padding-left: 1.5rem;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            margin-top: 3rem;
+            width: 100%;
+            min-height: 20vh;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Fade-in Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Style for "Read More" link */
+        .read-more {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #545909;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease;
+        }
+
+        .read-more:hover {
+            background: black;
+            color: #b0a0a1;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Add arrow to the "Read More" button */
+        .read-more::after {
+            content: ' →';
+            font-weight: bold;
+            margin-left: 0.5rem;
+        }
+
+        /* Unified card styles */
+        .feature-card {
+            border: 2px solid transparent;
+            padding: 15px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            text-align: center;
+            background-color: #f9f9f9;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            transform: scale(1);
+            border-radius: 10px;
+            width: 100%;
+        }
+
+        .feature-card:hover {
+            border-color: #c90495;
+            transform: scale(1.02);
+            box-shadow: 
+                0 0 20px rgba(0, 0, 255, 0.6),
+                0 0 20px rgba(255, 105, 180, 0.6),
+                0 0 20px rgba(0, 255, 0, 0.6),
+                0 0 20px rgba(255, 255, 0, 0.6);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.5;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .accent-text {
+            font-size: 14px;
+            color: #750f6e;
+            font-weight: bold;
+        }
+
+        .date-text {
+            font-size: 14px;
+            color: #51849c;
+            font-weight: normal;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Carousel styles */
+        .carousel-container {
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: 100%;
+            position: relative;
+            padding: 1rem 0;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 1rem;
+            width: max-content;
+            padding: 0.5rem 0;
+        }
+
+        .carousel-track .card {
+            min-width: 250px;
+            max-width: 250px;
+            height: auto;
+            min-height: 320px;
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            text-align: center;
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Social media icons */
+        .social-icons {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.2);
+        }
+
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+        }
+
+        /* Ensure proper iframe sizing */
+        iframe {
+            width: 100%;
+            height: 250px;
+            max-width: 100%;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        /* Hide animation on small screens for better performance */
+        @media (max-width: 768px) {
+            @keyframes scroll-left {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(0);
+                }
+            }
+            
+            .carousel-track {
+                animation: none;
+            }
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 480px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            header img {
+                position: relative;
+                margin-bottom: 0.5rem;
+                max-height: 40px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                margin: 0.2rem 0;
+            }
+
+            nav {
+                padding: 0.5rem;
+            }
+            
+            nav a {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.5rem;
+            }
+
+            .hero {
+                padding: 1rem 0.5rem;
+            }
+
+            main {
+                padding: 0.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .card, .feature-card {
+                margin: 0.5rem 0;
+                padding: 0.8rem;
+            }
+
+            .carousel-track .card {
+                min-width: 220px;
+                min-height: 300px;
+            }
+
+            .read-more {
+                padding: 0.3rem 0.7rem;
+                font-size: 12px;
+            }
+
+            iframe {
+                height: 200px;
+            }
+
+            footer {
+                padding: 1rem 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            .social-icons img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="https://iili.io/35EzAxe.png" alt="Lakshan Bandara Logo">
+        <div>
+            <h1>Lakshan Bandara</h1>
+            <p>"Believe you can and you're halfway there"</p>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#teachings">Dhamma Articles</a></li>
+            <li><a href="#import">Important Articles</a></li>
+            <li><a href="#resources">Movies</a></li>
+            <li><a href="#youtube">YouTube Videos</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+    </nav>
+	
+    <section class="hero reveal">
+        <h2>Welcome 😀</h2>
+        <div class="card">
+            <p class="accent-text">This Blog is an informational platform that shares articles on various topics, including Buddhist Articles, lifestyle tips, biographies, science, technology, and general knowledge.</p>
+        </div>
+    </section>
+		
+    <main>
+        <section id="teachings" class="reveal">
+            <h2>Latest Articles</h2>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <div class="card">
+                        <span class="date-text">2024.01.04</span>
+                        <h3>''අප භාග්‍යවතුන් වහන්සේගේ දෙතිස් මහා පුරුෂ ලක්ෂණ''</h3>
+                        <p>ඒ භාග්‍යවත් වූ අර්හත් වූ සම්මා සම්බුදු රජාණන් වහන්සේට නමස්කාර වේවා!...</p>
+                        <a href="https://www.lakshan2004.my-board.org/home/other_letters/other3/00_1" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.05.09</span>
+                        <h3>''බුදුරජාණන් වහන්සේගේ මහා කරුණාව''</h3>
+                        <p>කරුණාව යනු අනුන්ගේ දුකෙහි දී හදවත කම්පා වීමයි...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/great-kindness" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.07.14</span>
+                        <h3>"අනුහස් පිරුණු සත්‍යක්‍රියාව"</h3>
+                        <p>ඒ භාග්‍යවත් වූ අර්හත් වූ සම්මා සම්බුදු රජාණන් වහන්සේට නමස්කාර වේවා!...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sathyakriyawa" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.06.23</span>
+                        <h3>''තුති පූජාව''</h3>
+                        <p>තුති පූජාව මහත් ආනිශංස ගෙන දෙන්නක් ය..</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/2/1_4" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.08.22</span>
+                        <h3>"සසර පින පතළ කළ අසම සම රූ මහිම"</h3>
+                        <p>බුදුරජාණන් වහන්සේ නමක් ලෝකයට පහළ වීමට පෙර ලෝකයේ 'බුද්ධ කෝලාහලයක්' පැතිරී යනවා...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_02" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.09.28</span>
+                        <h3>සැපතත් සතුටත් ඇත්තේ වෛරය නැති තැනයි</h3>
+                        <p>මේ ලෝකයෙහි විවිධ සත්ව තල තිබේ. බුදුරදුන් වදාළේ සත්තාවාස හෙවත් විවිධ ස්වභාවයෙන් යුතු සත්ව තල නවයක් තිබෙන බවයි...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_04" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.10.12</span>
+                        <h3>මොකක්ද මේ ක්ෂණ සම්පත්තිය ? </h3>
+                        <p>ක්ෂණය යනු මොහොතකි. එ් මොහොත සැණෙකින් ගිලිහී යා හැකිය...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/kshana-sampaththiya" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.11.23</span>
+                        <h3>දෙව් සැප ලැබූ ඡත්ත මානවක දිව්‍යපුත්‍රයා </h3>
+                        <p>ඔහු විසුවේ සේතව්‍ය නුවරයි. ඡත්ත ඔහුගේ නමයි...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_05" class="read-more">Read More</a>
+                    </div>
+                    <div class="card">
+                        <span class="date-text">2024.12.16</span>
+                        <h3>අසිරිමත් ස්වර්ණමාලී මහා සෑ ඉතිහාසයෙන්</h3>
+                        <p>මෙම මහා භද්‍ර කල්පයේ සතර වැනි සම්මාසම්බුදු රජුන් ලෙස පහළ වූ අපගේ ගෞතම බුදුරජාණන් වහන්සේ...</p>
+                        <a href="https://www.lakshan2004.my-board.org/sadaham-arana/dhamma-articles/1/sitha_niwana_01" class="read-more">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="import" class="reveal">
+            <h2>Important Articles</h2>
+            <div class="grid">
+                <div class="feature-card" onclick="window.location='https://www.lakshan2004.my-board.org/home/other_letters/other/0_5'">
+                    <h3>''තලපත් - කාලා තිබුනට දැකල නෑනෙ ?''</h3>
+                    <p>අපි එදිනෙදා කෑමට ගන්න කෑලි-මාලු වර්ගවලින් ගොඩක් ප්‍රචලිත වර්ගයක් තමයි තලපත් කියන්නෙ...</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_5" class="read-more">Read More</a>
+                </div>
+                <div class="feature-card" onclick="window.location='https://www.lakshan2004.my-board.org/home/other_letters/other/0_1'">
+                    <h3>''කණ්ඩලම වැව් තාවුල්ලේ නිමවූ විශිෂ්ට නිර්මාණය''</h3>
+                    <p>කණ්ඩලම වැව් තාවුල්ලේ නිමවූ ජෙෆ්රි බාවා මහතාගේ විශිෂ්ට නිර්මාණය - (Heritance Kandalama) ☘️😍👣♥️...</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_1" class="read-more">Read More</a>
+                </div>
+                <div class="feature-card" onclick="window.location='https://www.lakshan2004.my-board.org/home/other_letters/other/0_2'">
+                    <h3>''උදෑසන ප්‍රමාදයකින් තොරව අවදිවීමට උපක්‍රමයක්''</h3>
+                    <p>බොහෝ දෙනෙක් උදෑසන ප්‍රමාදයකින් තොරව අවදිවීම සඳහා එලාම් එකක් තබා නිදාගන්න ට පුරුදු වෙලා ඉන්නවා...</p>
+                    <a href="https://www.lakshan2004.my-board.org/home/other_letters/other/0_2" class="read-more">Read More</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="events" class="schedule reveal">
+            <h2>Upcoming Events</h2>
+            <h3>2K25 April</h3>
+            <ul>
+                <li>Monday 7:00 PM </li>
+                <li>Wednesday 6:30 PM</li>
+                <li>Saturday 9:00 AM</li>
+                <li>Sunday 10:00 AM</li>
+            </ul>
+        </section>
+
+        <section id="resources" class="reveal">
+            <h2>Learning Resources</h2>
+            <div class="grid">
+                <div class="feature-card" onclick="window.location.href='https://kathuwaraya.com/';">
+                    <h3>Sinhala Reading Books</h3> 
+                    <p>Sinhala readers and writers. Download our free mobile apps to read Sinhala novels for free. Kathuwaraya is the new norm of reading and writing Sinhala stories</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='https://www.gutenberg.org';">
+                    <h3>English Reading Books </h3>
+                    <p>Download books and articles for reading. Project Gutenberg offers over 60,000 free eBooks.</p>
+                </div>
+                <div class="feature-card" onclick="window.location.href='https://www.goodreads.com/shelf/show/tamil-books-to-read';">
+                    <h3>Tamil Reading Books </h3>
+                    <p>Tamil Books To Read shelf on Goodreads - find popular Tamil literature and classics to enjoy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="youtube" class="reveal">
+            <h2>YouTube Videos</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Motivation Movies</h3>
+                    <iframe width="100%" height="250" src="https://www.youtube.com/embed/ej49nXPXdJA?si=JPAyidgcpD9F2Ha2" title="Motivational Video" frameborder="0" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="reveal">
+            <h2>Contact Me</h2>
+            <div class="grid">
+                <div class="card">
+                    <p>For inquiries about my programs:</p>
+                    <ul>
+                        <li>Email: <a href="mailto:osithalakshan856@gmail.com">osithalakshan856@gmail.com</a></li>
+                        <li>My Article Site: <a href="https://www.lakshan2004.my-board.org/">lakshan.me</a></li>
+                        <li>Phone: <a href="tel:+94768855659">+94 76 885 5659</a></li>
+                        <li>Address: Sri Lanka, Colombo 07</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2025 Lakshan Bandara. All rights reserved.</p>
+        <p>Follow us on social media for daily inspiration and updates</p>
+        
+        <div class="social-icons">
+            <a href="https://wa.me/+94768855659" target="_blank" aria-label="WhatsApp">
+                <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp">
+            </a>
+            <a href="https://t.me/Lakshan856_004" target="_blank" aria-label="Telegram">
+                <img src="https://img.icons8.com/color/48/000000/telegram-app--v1.png" alt="Telegram">
+            </a>
+            <a href="#" target="_blank" aria-label="YouTube">
+                <img src="https://img.icons8.com/color/48/000000/youtube" alt="YouTube">
+            </a>
+            <a href="#" target="_blank" aria-label="Twitter">
+                <img src="https://img.icons8.com/color/48/000000/twitter" alt="Twitter">
+            </a>
+            <a href="#" target="_blank" aria-label="Facebook">
+                <img src="https://img.icons8.com/color/48/000000/facebook" alt="Facebook">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            function revealElements() {
+                let reveals = document.querySelectorAll(".reveal");
+                reveals.forEach((element) => {
+                    let windowHeight = window.innerHeight;
+                    let elementTop = element.getBoundingClientRect().top;
+                    let revealPoint = 100;
+
+                    if (elementTop < windowHeight - revealPoint) {
+                        element.classList.add("active");
+                    }
+                });
+            }
+
+            // Initial check when page loads
+            revealElements();
+            
+            // Check on scroll
+            window.addEventListener("scroll", revealElements);
+            
+            // Check when window is resized
+            window.addEventListener("resize", revealElements);
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('nav a').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    
+                    if (href.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        const targetId = href === '#' ? 'body' : href;
+                        const targetElement = targetId === 'body' ? 
+                            document.body : 
+                            document.querySelector(targetId);
+                            
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Make carousel horizontally scrollable on mobile
+            const carouselContainer = document.querySelector('.carousel-container');
+            if (carouselContainer) {
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                carouselContainer.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    startX = e.pageX - carouselContainer.offsetLeft;
+                    scrollLeft = carouselContainer.scrollLeft;
+                });
+
+                carouselContainer.addEventListener('mouseleave', () => {
+                    isDown = false;
+                });
+
+                carouselContainer.addEventListener('mouseup', () => {
+                    isDown = false;
+                });
+
+                carouselContainer.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - carouselContainer.offsetLeft;
+                    const walk = (x - startX) * 2;
+                    carouselContainer.scrollLeft = scrollLeft - walk;
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
