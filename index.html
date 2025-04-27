@@ -4,808 +4,1164 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>මගේ A/L සූදානම</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
     <style>
-    body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: var(--transition);
-        line-height: 1.6;
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(142, 45, 226, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(74, 0, 224, 0.05) 0%, transparent 50%);
-        background-attachment: fixed;
-    }
-
-    .dark-mode body {
-        background-image: 
-            radial-gradient(circle at 25% 25%, rgba(0, 247, 255, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, rgba(72, 149, 239, 0.05) 0%, transparent 50%);
-    }
-
-    :root {
-        --primary-color: #8e2de2;
-        --secondary-color: #4a00e0;
-        --text-color: #2d3748;
-        --bg-color: #f8f9fa;
-        --card-bg: #fff;
-        --completed-bg: #e2e8f0;
-        --shadow: 0 10px 15px rgba(142, 45, 226, 0.1);
-        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    .dark-mode {
-        --primary-color: #00f7ff;
-        --secondary-color: #4895ef;
-        --text-color: #e2e8f0;
-        --bg-color: #111827;
-        --card-bg: #1f2937;
-        --completed-bg: #374151;
-        --shadow: 0 10px 15px rgba(0, 247, 255, 0.2);
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Noto Sans Sinhala', 'Segoe UI', sans-serif;
-    }
-
-    body {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        transition: var(--transition);
-        line-height: 1.6;
-    }
-
-    .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
-    }
-
-    header {
-        text-align: center;
-        margin-bottom: 40px;
-        padding: 20px 0;
-    }
-
-    h1, h2, h3 {
-        margin-bottom: 15px;
-        color: var(--primary-color);
-    }
-
-    .grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    @media (min-width: 768px) {
-        .grid {
-            grid-template-columns: 1fr 1fr;
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --success: #06d6a0;
+            --warning: #ffc43d;
+            --danger: #ef476f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --shadow: 0 10px 30px rgba(67, 97, 238, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            --font-family: 'Nunito', 'Noto Sans Sinhala', sans-serif;
         }
-    }
 
-    .card {
-        background-color: var(--card-bg);
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-    }
+        .dark-theme {
+            --primary: #4cc9f0;
+            --primary-dark: #4895ef;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #1a1a2e;
+            --dark: #e9ecef;
+            --gray: #adb5bd;
+            --white: #16213e;
+            --shadow: 0 10px 30px rgba(76, 201, 240, 0.2);
+        }
 
-    .card:hover {
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+            scroll-behavior: smooth;
+        }
 
-    /* Theme toggle */
-    .theme-toggle {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background-color: var(--card-bg);
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        box-shadow: var(--shadow);
-        z-index: 100;
-    }
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
 
-    .theme-toggle svg {
-        fill: var(--text-color);
-        width: 24px;
-        height: 24px;
-        transition: var(--transition);
-    }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(67, 97, 238, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(114, 9, 183, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
 
-    /* Todo form styles */
-    .todo-form {
-        display: flex;
-        margin-bottom: 20px;
-    }
+        .dark-theme body::before {
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(76, 201, 240, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(114, 9, 183, 0.05) 0%, transparent 50%);
+        }
 
-    .todo-input {
-        flex: 1;
-        padding: 10px 15px;
-        border: 2px solid var(--primary-color);
-        border-radius: 5px 0 0 5px;
-        font-size: 16px;
-        background-color: var(--card-bg);
-        color: var(--text-color);
-    }
+        /* Header & Navigation */
+        .nav-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 100;
+            background-color: rgba(var(--light-rgb), 0.8);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+        }
 
-    .todo-input:focus {
-        outline: none;
-        border-color: var(--secondary-color);
-    }
+        .dark-theme .nav-container {
+            background-color: rgba(26, 26, 46, 0.8);
+        }
 
-    .add-btn {
-        padding: 10px 20px;
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        border-radius: 0 5px 5px 0;
-        cursor: pointer;
-        transition: var(--transition);
-    }
+        .navbar {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    .add-btn:hover {
-        background-color: var(--secondary-color);
-    }
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+        }
 
-    /* Task list styles */
-    .task-list {
-        list-style-type: none;
-    }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
 
-    .task-item {
-        display: flex;
-        align-items: center;
-        padding: 10px;
-        margin-bottom: 8px;
-        background-color: var(--card-bg);
-        border-radius: 5px;
-        transition: var(--transition);
-    }
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+        }
 
-    .task-item.completed {
-        background-color: var(--completed-bg);
-        opacity: 0.8;
-    }
+        .nav-link:hover {
+            color: var(--primary);
+        }
 
-    .task-text {
-        flex: 1;
-        margin: 0 10px;
-    }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: var(--transition);
+        }
 
-    .completed .task-text {
-        text-decoration: line-through;
-    }
+        .nav-link:hover::after {
+            width: 100%;
+        }
 
-    .task-checkbox {
-        width: 20px;
-        height: 20px;
-        cursor: pointer;
-    }
+        .theme-toggle {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+        }
 
-    .delete-btn {
-        background-color: #e63946;
-        color: white;
-        border: none;
-        border-radius: 3px;
-        padding: 5px 10px;
-        cursor: pointer;
-        transition: var(--transition);
-    }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
 
-    .delete-btn:hover {
-        background-color: #c1121f;
-    }
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            color: var(--primary);
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
 
-    /* Quote section */
-    .quote-section {
-        text-align: center;
-        padding: 30px 0;
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
 
-    .quote {
-        font-size: 18px;
-        font-style: italic;
-        margin-bottom: 10px;
-        min-height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
+        .hero-content {
+            max-width: 800px;
+            z-index: 1;
+        }
 
-    .author {
-        font-weight: bold;
-        color: var(--primary-color);
-    }
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
 
-    /* Countdown section */
-    .countdown {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        margin-top: 20px;
-    }
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--gray);
+        }
 
-    .countdown-item {
-        text-align: center;
-        padding: 15px;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: white;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
-    }
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
 
-    .countdown-item:hover {
-        transform: translateY(-5px);
-    }
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.3);
+        }
 
-    .countdown-value {
-        font-size: 28px;
-        font-weight: bold;
-        display: block;
-    }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            margin-left: 15px;
+        }
 
-    .countdown-label {
-        font-size: 14px;
-        opacity: 0.9;
-    }
+        .dark-theme .btn-outline {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
 
-    /* Tabs for completed tasks */
-    .tabs {
-        display: flex;
-        margin-bottom: 20px;
-    }
+        .btn-outline:hover {
+            background: var(--gradient);
+            color: white;
+        }
 
-    .tab {
-        padding: 10px 20px;
-        cursor: pointer;
-        background-color: var(--card-bg);
-        border: none;
-        transition: var(--transition);
-        flex: 1;
-        text-align: center;
-    }
+        /* Countdown Section */
+        .countdown-section {
+            padding: 100px 20px;
+            background-color: var(--white);
+            border-radius: 30px 30px 0 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 2;
+        }
 
-    .tab:first-child {
-        border-radius: 5px 0 0 5px;
-    }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary);
+            font-weight: 800;
+        }
 
-    .tab:last-child {
-        border-radius: 0 5px 5px 0;
-    }
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--gray);
+        }
 
-    .tab.active {
-        background-color: var(--primary-color);
-        color: white;
-    }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .task-container {
-        display: none;
-    }
+        .countdown-item {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 30px;
+            min-width: 150px;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 5px solid var(--primary);
+        }
 
-    .task-container.active {
-        display: block;
-    }
+        .countdown-item:hover {
+            transform: translateY(-10px);
+        }
 
-    .task-item {
-        display: flex;
-        align-items: center;
-        padding: 12px;
-        margin-bottom: 10px;
-        background-color: var(--card-bg);
-        border-radius: 8px;
-        transition: all 0.3s ease;
-        border-left: 4px solid var(--primary-color);
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-        animation: slideIn 0.3s ease-out;
-    }
+        .countdown-value {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
 
-    @keyframes slideIn {
-        from {
+        .countdown-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        /* Quotes Section */
+        .quotes-section {
+            padding: 100px 20px;
+            position: relative;
+        }
+
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .quote {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            position: relative;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .quote::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+        }
+
+        .quote::after {
+            content: """;
+            position: absolute;
+            bottom: -20px;
+            right: 20px;
+            font-size: 4rem;
+            color: var(--primary);
+            opacity: 0.2;
+        }
+
+        .author {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Tasks Section */
+        .tasks-section {
+            padding: 100px 20px;
+            background-color: var(--white);
+            border-radius: 30px 30px 0 0;
+            margin-top: -30px;
+            position: relative;
+            z-index: 3;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .tab {
+            padding: 15px 30px;
+            background-color: var(--light);
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dark-theme .tab {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .tab.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .task-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .task-container.active {
+            display: block;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .todo-form {
+            display: flex;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .todo-input {
+            flex: 1;
+            padding: 15px 20px;
+            border: 2px solid var(--primary);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--white);
+            color: var(--dark);
+        }
+
+        .todo-input:focus {
+            outline: none;
+            box-shadow: var(--shadow);
+        }
+
+        .add-btn {
+            padding: 0 30px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .task-list {
+            list-style-type: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            margin-bottom: 15px;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark-theme .task-item {
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        .task-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 5px;
+            background: var(--gradient);
+        }
+
+        .task-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .task-item.completed {
+            opacity: 0.7;
+            background-color: var(--light);
+        }
+
+        .task-item.completed::before {
+            background: var(--success);
+        }
+
+        .task-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+            margin-right: 15px;
+            cursor: pointer;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .task-checkbox:checked {
+            background-color: var(--success);
+            border-color: var(--success);
+        }
+
+        .task-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-size: 16px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .task-text {
+            flex: 1;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .completed .task-text {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+
+        .delete-btn {
+            background-color: transparent;
+            color: var(--danger);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .delete-btn:hover {
+            background-color: var(--danger);
+            color: white;
+        }
+
+        /* Hours Tracking Section */
+        .hours-section {
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .glow-button {
+            display: inline-block;
+            padding: 20px 40px;
+            font-size: 1.2rem;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 700;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            z-index: -1;
             opacity: 0;
-            transform: translateX(-20px);
+            transition: var(--transition);
         }
-        to {
+
+        .glow-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(67, 97, 238, 0.3);
+        }
+
+        .glow-button:hover::before {
             opacity: 1;
-            transform: translateX(0);
         }
-    }
 
-    .task-item:hover {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transform: translateX(5px);
-    }
+        /* Footer */
+        .footer {
+            padding: 50px 20px;
+            background-color: var(--dark);
+            color: var(--light);
+            text-align: center;
+        }
 
-    /* Animation for quotes */
-    @keyframes fadeInOut {
-        0% { opacity: 0; transform: translateY(10px); }
-        10% { opacity: 1; transform: translateY(0); }
-        90% { opacity: 1; transform: translateY(0); }
-        100% { opacity: 0; transform: translateY(-10px); }
-    }
+        .dark-theme .footer {
+            background-color: #0f0f23;
+        }
 
-    .quote-container {
-        animation: fadeInOut 8s forwards;
-    }
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
 
-    .glow-button {
-        display: inline-block;
-        padding: 15px 35px;
-        font-size: 20px;
-        color: #fff;
-        background: linear-gradient(45deg, #8e2de2, #4a00e0);
-        border: none;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-        box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
-        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        position: relative;
-        overflow: hidden;
-        z-index: 1;
-    }
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
 
-    .glow-button:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(45deg, #4a00e0, #8e2de2);
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 0.5s ease;
-    }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
 
-    .glow-button:hover {
-        transform: translateY(-5px) scale(1.05);
-        box-shadow: 0 15px 25px rgba(142, 45, 226, 0.5);
-    }
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
 
-    .glow-button:hover:before {
-        opacity: 1;
-    }
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
 
-    .dark-mode .glow-button {
-        background: linear-gradient(45deg, #00f7ff, #4895ef);
-        box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
-    }
+        .copyright {
+            color: var(--gray);
+            margin-top: 30px;
+        }
 
-    .dark-mode .glow-button:before {
-        background: linear-gradient(45deg, #4895ef, #00f7ff);
-    }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
 
-    .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 20px;
-        animation: fadeIn 0.8s ease-out forwards;
-    }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                padding: 20px;
+                border-radius: 0 0 var(--border-radius) var(--border-radius);
+                box-shadow: var(--shadow);
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
 
-    .grid {
-        animation: fadeIn 1s ease-out 0.2s forwards;
-        opacity: 0;
-    }
+            .dark-theme .nav-links {
+                background-color: var(--light);
+            }
 
-    .card {
-        animation: fadeIn 1.2s ease-out 0.4s forwards;
-        opacity: 0;
-    }
+            .nav-links.active {
+                display: flex;
+            }
 
-    /* Add these media queries to fix mobile display issues */
-	@media (max-width: 480px) {
-		/* Adjust font sizes for better mobile display */
-		h1 {
-			font-size: 22px;
-		}
+            .menu-toggle {
+                display: block;
+            }
 
-		h2 {
-			font-size: 18px;
-		}
+            .hero-title {
+                font-size: 2.5rem;
+            }
 
-		h3 {
-			font-size: 16px;
-		}
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
 
-		p {
-			font-size: 14px;
-		}
+            .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 15px;
+            }
 
-		/* Make countdown section more compact */
-		.countdown {
-			grid-template-columns: repeat(2, 1fr);
-			gap: 8px;
-		}
+            .btn-outline {
+                margin-left: 0;
+            }
 
-		.countdown-item {
-			padding: 10px 5px;
-		}
+            .countdown-item {
+                min-width: 120px;
+                padding: 20px;
+            }
 
-		.countdown-value {
-			font-size: 20px;
-		}
+            .countdown-value {
+                font-size: 2.5rem;
+            }
 
-		.countdown-label {
-			font-size: 12px;
-		}
+            .countdown-label {
+                font-size: 0.9rem;
+            }
 
-		/* Make task items more compact */
-		.task-item {
-			padding: 8px;
-			margin-bottom: 8px;
-		}
+            .quote {
+                font-size: 1.2rem;
+                padding: 20px;
+                min-height: 150px;
+            }
 
-		.task-text {
-			font-size: 14px;
-		}
+            .section-title {
+                font-size: 2rem;
+            }
 
-		/* Make form elements more compact */
-		.todo-input {
-			padding: 8px 10px;
-			font-size: 14px;
-		}
+            .tabs {
+                flex-direction: column;
+            }
 
-		.add-btn {
-			padding: 8px 15px;
-		}
+            .tab {
+                width: 100%;
+            }
 
-		/* Make quote section more compact */
-		.quote {
-			font-size: 14px;
-			min-height: 100px;
-		}
+            .todo-form {
+                flex-direction: column;
+            }
 
-		/* Adjust glow button for mobile */
-		.glow-button {
-			padding: 12px 25px;
-			font-size: 16px;
-		}
-	}
+            .add-btn {
+                padding: 15px;
+            }
+        }
 
-	/* Add additional media query for very small screens */
-	@media (max-width: 360px) {
-		.countdown {
-			grid-template-columns: repeat(2, 1fr);
-		}
+        /* Additional animations */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
 
-		.countdown-value {
-			font-size: 18px;
-		}
-		
-		h1 {
-			font-size: 20px;
-		}
-	}
-</style>
+        @keyframes floating {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0); }
+        }
 
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounceDown 2s infinite;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+            40% { transform: translateY(-20px) translateX(-50%); }
+            60% { transform: translateY(-10px) translateX(-50%); }
+        }
+    </style>
 </head>
 <body>
-    <div class="theme-toggle" id="themeToggle">
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
-        </svg>
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none;">
-            <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
-        </svg>
-    </div>
-
-    <div class="container">
-        <header>
-            <h1>Are You Ready Upcoming A/L Eaxm? 😈💪</h1>
-            <p>"ඔබේ විභාග සාර්ථකත්වය වෙනුවෙන් මෙම වෙබ් අඩවිය නිර්මාණය කර ඇත."</p>
-        </header>
-
-        <div class="grid">
-            <div class="card">
-                <h2>Time Count</h2>
-                <p>2025 නොවැම්බර් 5 දක්වා ඉතිරි කාලය:</p>
-                <div class="countdown" id="countdown">
-                    <div class="countdown-item">
-                        <span class="countdown-value" id="days">0</span>
-                        <span class="countdown-label">දින</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-value" id="hours">0</span>
-                        <span class="countdown-label">පැය</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-value" id="minutes">0</span>
-                        <span class="countdown-label">මිනිත්තු</span>
-                    </div>
-                    <div class="countdown-item">
-                        <span class="countdown-value" id="seconds">0</span>
-                        <span class="countdown-label">තත්පර</span>
-                    </div>
-                </div>
+    <div class="nav-container">
+        <div class="navbar">
+            <a href="#" class="logo">A/L Prep</a>
+            <div class="nav-links">
+                <a href="#countdown" class="nav-link">Time Countdown</a>
+                <a href="#quotes" class="nav-link">Motivation</a>
+                <a href="#tasks" class="nav-link">To-Do List</a>
+                <a href="#hours" class="nav-link">Study Hours</a>
             </div>
-
-            <div class="card quote-section">
-                <h2>Motivation Quotes</h2>
-                <div id="quoteContainer" class="quote">
-                    <p id="quote">උපුටා ගැනීම් ලෝඩ් වෙමින්...</p>
-                </div>
-                <p class="author" id="author"></p>
-            </div>
-        </div>
-
-        <div class="card" style="margin-top: 20px;">
-            <h2>To Do List 📝</h2>
-            
-            <div class="tabs">
-                <button class="tab active" data-tab="pending">කරන්න තියෙන වැඩ</button>
-                <button class="tab" data-tab="completed">සම්පූර්ණ කළ කාර්යයන්</button>
-            </div>
-            
-            <div id="pendingTasks" class="task-container active">
-                <form id="todoForm" class="todo-form">
-                    <input type="text" id="todoInput" class="todo-input" placeholder="නව කාර්යයක් ඇතුළත් කරන්න..." required>
-                    <button type="submit" class="add-btn">එකතු කරන්න</button>
-                </form>
-                
-                <ul id="taskList" class="task-list">
-                    <!-- Tasks will be added here dynamically -->
-                </ul>
-            </div>
-            
-            <div id="completedTasks" class="task-container">
-                <ul id="completedTaskList" class="task-list">
-                    <!-- Completed tasks will be added here dynamically -->
-                </ul>
-            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-sun"></i>
+            </button>
         </div>
     </div>
-	
-	<div style="text-align: center; margin: 30px 0;">
-    <a href="workhourscount.html" class="glow-button">ඔයා අද දවසට වැඩ කරපු පැය ගණන සටහන් කරන්න.</a>
-	</div>
-	
+
+    <section class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">Are You Ready For Your A/L Exam? 🚀</h1>
+            <p class="hero-subtitle">"ඔබේ විභාග සාර්ථකත්වය වෙනුවෙන් මෙම වෙබ් අඩවිය නිර්මාණය කර ඇත."</p>
+            <a href="#countdown" class="btn">Get Started</a>
+            <a href="#tasks" class="btn btn-outline">My To-Do List</a>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <section class="countdown-section" id="countdown">
+        <h2 class="section-title">Time Remaining</h2>
+        <p class="section-subtitle">2025 නොවැම්බර් 5 දක්වා ඉතිරි කාලය:</p>
+        <div class="countdown-container">
+            <div class="countdown-item pulse">
+                <span class="countdown-value" id="days">0</span>
+                <span class="countdown-label">දින</span>
+            </div>
+            <div class="countdown-item pulse">
+                <span class="countdown-value" id="hours">0</span>
+                <span class="countdown-label">පැය</span>
+            </div>
+            <div class="countdown-item pulse">
+                <span class="countdown-value" id="minutes">0</span>
+                <span class="countdown-label">මිනිත්තු</span>
+            </div>
+            <div class="countdown-item pulse">
+                <span class="countdown-value" id="seconds">0</span>
+                <span class="countdown-label">තත්පර</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="quotes-section" id="quotes">
+        <h2 class="section-title">Daily Motivation</h2>
+        <div class="quote-container">
+            <div class="quote">
+                <p id="quote">Quote loading...</p>
+            </div>
+            <p class="author" id="author"></p>
+        </div>
+    </section>
+
+    <section class="tasks-section" id="tasks">
+        <h2 class="section-title">My Study Plan</h2>
+        <div class="tabs">
+            <button class="tab active" data-tab="pending">කරන්න තියෙන වැඩ</button>
+            <button class="tab" data-tab="completed">සම්පූර්ණ කළ කාර්යයන්</button>
+        </div>
+        
+        <div id="pendingTasks" class="task-container active">
+            <form id="todoForm" class="todo-form">
+                <input type="text" id="todoInput" class="todo-input" placeholder="නව කාර්යයක් ඇතුළත් කරන්න..." required>
+                <button type="submit" class="add-btn">එකතු කරන්න</button>
+            </form>
+            
+            <ul id="taskList" class="task-list">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+        </div>
+        
+        <div id="completedTasks" class="task-container">
+            <ul id="completedTaskList" class="task-list">
+                <!-- Completed tasks will be added here dynamically -->
+            </ul>
+        </div>
+    </section>
+
+    <section class="hours-section" id="hours">
+        <h2 class="section-title">Track Your Progress</h2>
+        <p class="section-subtitle">ඔබේ අධ්යයන කාලය සටහන් කරන්න</p>
+        <a href="workhourscount.html" class="glow-button">
+            <i class="fas fa-clock"></i> ඔයා අද දවසට වැඩ කරපු පැය ගණන සටහන් කරන්න
+        </a>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-title">A/L Exam Preparation</h3>
+            <p>ඔබේ අධ්‍යාපන ගමනේ සහකරු</p>
+            <div class="social-links">
+                <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2025 A/L Prep. All Rights Reserved.</p>
+        </div>
+    </footer>
+
     <script>
         // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const sunIcon = document.querySelector('.sun-icon');
-        const moonIcon = document.querySelector('.moon-icon');
+		const themeToggle = document.getElementById('themeToggle');
+		const themeIcon = themeToggle.querySelector('i');
+		const menuToggle = document.getElementById('menuToggle');
+		const navLinks = document.querySelector('.nav-links');
 
-        // Load theme from localStorage
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-mode');
-            sunIcon.style.display = 'none';
-            moonIcon.style.display = 'block';
-        }
+		// Check saved theme
+		if (localStorage.getItem('theme') === 'dark') {
+			document.body.classList.add('dark-theme');
+			themeIcon.classList.remove('fa-sun');
+			themeIcon.classList.add('fa-moon');
+		}
 
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            
-            if (document.body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                sunIcon.style.display = 'none';
-                moonIcon.style.display = 'block';
-            } else {
-                localStorage.setItem('theme', 'light');
-                sunIcon.style.display = 'block';
-                moonIcon.style.display = 'none';
-            }
-        });
+		// Toggle theme
+		themeToggle.addEventListener('click', () => {
+			document.body.classList.toggle('dark-theme');
+			
+			if (document.body.classList.contains('dark-theme')) {
+				localStorage.setItem('theme', 'dark');
+				themeIcon.classList.remove('fa-sun');
+				themeIcon.classList.add('fa-moon');
+			} else {
+				localStorage.setItem('theme', 'light');
+				themeIcon.classList.remove('fa-moon');
+				themeIcon.classList.add('fa-sun');
+			}
+		});
 
-        // Countdown Timer
-        function updateCountdown() {
-            const examDate = new Date('November 5, 2025 00:00:00').getTime();
-            const now = new Date().getTime();
-            const timeLeft = examDate - now;
-            
-            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
-        }
+		// Mobile menu toggle
+		menuToggle.addEventListener('click', () => {
+			navLinks.classList.toggle('active');
+			
+			if (menuToggle.querySelector('i').classList.contains('fa-bars')) {
+				menuToggle.querySelector('i').classList.remove('fa-bars');
+				menuToggle.querySelector('i').classList.add('fa-times');
+			} else {
+				menuToggle.querySelector('i').classList.remove('fa-times');
+				menuToggle.querySelector('i').classList.add('fa-bars');
+			}
+		});
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+		// Close mobile menu when clicking a link
+		document.querySelectorAll('.nav-link').forEach(link => {
+			link.addEventListener('click', () => {
+				navLinks.classList.remove('active');
+				menuToggle.querySelector('i').classList.remove('fa-times');
+				menuToggle.querySelector('i').classList.add('fa-bars');
+			});
+		});
 
-        // Todo List Functionality
-        const todoForm = document.getElementById('todoForm');
-        const todoInput = document.getElementById('todoInput');
-        const taskList = document.getElementById('taskList');
-        const completedTaskList = document.getElementById('completedTaskList');
-        
-        // Load tasks from localStorage
-        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-        let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+		// Smooth scroll for anchor links
+		document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+			anchor.addEventListener('click', function(e) {
+				e.preventDefault();
+				
+				const targetId = this.getAttribute('href');
+				if (targetId === '#') return;
+				
+				const targetElement = document.querySelector(targetId);
+				if (targetElement) {
+					const navHeight = document.querySelector('.nav-container').offsetHeight;
+					const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight;
+					
+					window.scrollTo({
+						top: targetPosition,
+						behavior: 'smooth'
+					});
+				}
+			});
+		});
 
-        // Render tasks
-        function renderTasks() {
-            taskList.innerHTML = '';
-            completedTaskList.innerHTML = '';
-            
-            tasks.forEach((task, index) => {
-                const li = document.createElement('li');
-                li.className = 'task-item';
-                li.innerHTML = `
-                    <input type="checkbox" class="task-checkbox">
-                    <span class="task-text">${task}</span>
-                    <button class="delete-btn">මකන්න</button>
-                `;
-                
-                const checkbox = li.querySelector('.task-checkbox');
-                checkbox.addEventListener('change', () => {
-                    completedTasks.push(task);
-                    tasks.splice(index, 1);
-                    
-                    localStorage.setItem('tasks', JSON.stringify(tasks));
-                    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-                    
-                    renderTasks();
-                });
-                
-                const deleteBtn = li.querySelector('.delete-btn');
-                deleteBtn.addEventListener('click', () => {
-                    tasks.splice(index, 1);
-                    localStorage.setItem('tasks', JSON.stringify(tasks));
-                    renderTasks();
-                });
-                
-                taskList.appendChild(li);
-            });
-            
-            completedTasks.forEach((task, index) => {
-                const li = document.createElement('li');
-                li.className = 'task-item completed';
-                li.innerHTML = `
-                    <input type="checkbox" class="task-checkbox" checked>
-                    <span class="task-text">${task}</span>
-                    <button class="delete-btn">මකන්න</button>
-                `;
-                
-                const checkbox = li.querySelector('.task-checkbox');
-                checkbox.addEventListener('change', () => {
-                    tasks.push(task);
-                    completedTasks.splice(index, 1);
-                    
-                    localStorage.setItem('tasks', JSON.stringify(tasks));
-                    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-                    
-                    renderTasks();
-                });
-                
-                const deleteBtn = li.querySelector('.delete-btn');
-                deleteBtn.addEventListener('click', () => {
-                    completedTasks.splice(index, 1);
-                    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
-                    renderTasks();
-                });
-                
-                completedTaskList.appendChild(li);
-            });
-        }
+		// Countdown Timer
+		function updateCountdown() {
+			const examDate = new Date('November 5, 2025 00:00:00').getTime();
+			const now = new Date().getTime();
+			const timeLeft = examDate - now;
+			
+			const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+			const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+			
+			document.getElementById('days').textContent = days;
+			document.getElementById('hours').textContent = hours;
+			document.getElementById('minutes').textContent = minutes;
+			document.getElementById('seconds').textContent = seconds;
+			
+			if (timeLeft < 0) {
+				clearInterval(countdownTimer);
+				document.getElementById('days').textContent = '0';
+				document.getElementById('hours').textContent = '0';
+				document.getElementById('minutes').textContent = '0';
+				document.getElementById('seconds').textContent = '0';
+			}
+		}
 
-        // Add new task
-        todoForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const newTask = todoInput.value.trim();
-            
-            if (newTask) {
-                tasks.push(newTask);
-                localStorage.setItem('tasks', JSON.stringify(tasks));
-                todoInput.value = '';
-                renderTasks();
-            }
-        });
+		// Update countdown every second
+		const countdownTimer = setInterval(updateCountdown, 1000);
+		updateCountdown();
 
-        // Tab switching
-        const tabs = document.querySelectorAll('.tab');
-        const taskContainers = document.querySelectorAll('.task-container');
-        
-        tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabName = tab.dataset.tab;
-                
-                tabs.forEach(t => t.classList.remove('active'));
-                taskContainers.forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                document.getElementById(tabName + 'Tasks').classList.add('active');
-            });
-        });
+		// Quotes functionality
+		const quotes = [
+			{ text: "මිනිසුන් අතර සටන් කරන්නේ කවුද යන්න නොව, මිනිසුන් අතර වැඩිපුරම දැනුම ලබන්නේ කවුද යන්නයි.", author: "ඒල්බට් අයින්ස්ටයින්" },
+			{ text: "ඔබේ සුමට නොවන කාල පරිච්ඡේදයන් ඔබේ විභවය වඩාත් හොඳින් හෙළිදරව් කරන අවස්ථාවන් ය.", author: "බිල් ගේට්ස්" },
+			{ text: "සෑම අසාර්ථකත්වයකම තවත් උත්සාහයක් සඳහා අවස්ථාවක් වෙයි.", author: "හෙන්රි ෆොඩ්" },
+			{ text: "ජීවිතයේ වැදගත්ම දේ නම් ඔබේ අතීතය අත්හැර දැමීමට හැකි වීමයි.", author: "ස්ටීව් ජොබ්ස්" },
+			{ text: "අධ්‍යයනය කිරීම සඳහා අවශ්‍ය නම්, ඔබේ ජීවිතය ප්‍රමාණවත් තරම් දීර්ඝ නැත.", author: "රවීන්ද්‍රනාත් තාගෝර්" },
+			{ text: "ඔබ සිතන දේ ඔබ වේ. ඔබ සිතන දේ ඔබ වේ.", author: "බුදුරජාණන් වහන්සේ" },
+			{ text: "ඔබේ අනාගතය ඔබ විසින් නිර්මාණය කරන්නේය.", author: "ස්වාමි විවේකානන්ද" },
+			{ text: "පොතක් අරින්න, එවිට ඔබට නව ලෝකයක් විවර වේ.", author: "ඩා. ඒ.පී.ජේ. අබ්දුල් කලාම්" }
+		];
 
-        // Motivational Quotes
-        const quotes = [
-            {
-                text: "ඔබ කවදාවත් පරාජය නොවේ නම්, ඔබ ප්‍රමාණවත් තරම් උත්සාහ නොකරන්නේය.",
-                author: "අල්බට් අයින්ස්ටයින්"
-            },
-            {
-                text: "අධ්‍යාපනය යනු අපි ඉගෙන ගත් දේ අමතක වූ විට ඉතිරි වන දෙයයි.",
-                author: "බී. එෆ්. ස්කිනර්"
-            },
-            {
-                text: "අද කළ හැකි දේ හෙට වෙනුවෙන් කල් නොදමන්න.",
-                author: "බෙන්ජමින් ෆ්රැන්ක්ලින්"
-            },
-            {
-                text: "ඉගෙනීම යනු ඔබේ මනස සකස් කිරීමයි, සම්පූර්ණ කිරීම නොවේ.",
-                author: "මර්කස් ඔරේලියස්"
-            },
-            {
-                text: "සාර්ථකත්වය යනු ලැබූ දේවල් නොව, බාධක ජය ගැනීමයි.",
-                author: "විනස්ටන් චර්චිල්"
-            },
-            {
-                text: "ඔබ කවදා හෝ වැටුනත්, නැගිටීම අමතක නොකරන්න.",
-                author: "කන්ෆියුසියස්"
-            },
-            {
-                text: "දිනපතා සුළු දියුණුවක් කාලයත් සමඟ විශාල වෙනසක් ඇති කරයි.",
-                author: "චාල්ස් කැල්ටන්"
-            },
-            {
-                text: "විභාගය යනු අභියෝගයකි, බියක් නොවේ.",
-                author: "සිංහල ප්‍රස්ථාව"
-            },
-            {
-                text: "අසීරු යැයි සිතන දේ අත්හරින්නට එපා, අසීරු යැයි සිතීම අත්හරින්න.",
-                author: "සිංහල ප්‍රස්ථාව"
-            },
-            {
-                text: "දැනුම පහන් සිළුවකි, එහි ආලෝකය හැම තැනම දැනෙයි.",
-                author: "සිංහල ප්‍රස්ථාව"
-            }
-        ];
+		function getRandomQuote() {
+			const randomIndex = Math.floor(Math.random() * quotes.length);
+			document.getElementById('quote').textContent = quotes[randomIndex].text;
+			document.getElementById('author').textContent = quotes[randomIndex].author;
+		}
 
-        function showRandomQuote() {
-            const quoteContainer = document.getElementById('quoteContainer');
-            const quoteElement = document.getElementById('quote');
-            const authorElement = document.getElementById('author');
-            
-            // Create a new quote container with animation
-            const newQuoteContainer = document.createElement('div');
-            newQuoteContainer.className = 'quote-container';
-            
-            // Get random quote
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            const randomQuote = quotes[randomIndex];
-            
-            // Update the quote and author
-            quoteElement.textContent = randomQuote.text;
-            authorElement.textContent = randomQuote.author;
-            
-            // Apply the animation
-            quoteContainer.style.opacity = '0';
-            setTimeout(() => {
-                quoteContainer.style.opacity = '1';
-            }, 300);
-        }
+		// Show a random quote on load and change it every 24 hours
+		getRandomQuote();
+		setInterval(getRandomQuote, 86400000); // 24 hours
 
-        // Show initial quote
-        showRandomQuote();
-        
-        // Change quote every 10 seconds
-        setInterval(showRandomQuote, 10000);
+		// Task management functionality
+		const todoForm = document.getElementById('todoForm');
+		const todoInput = document.getElementById('todoInput');
+		const taskList = document.getElementById('taskList');
+		const completedTaskList = document.getElementById('completedTaskList');
+		const tabs = document.querySelectorAll('.tab');
+		const taskContainers = document.querySelectorAll('.task-container');
 
-        // Initialize
-        renderTasks();
-    </script>
+		// Load tasks from localStorage
+		function loadTasks() {
+			const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+			
+			savedTasks.forEach(task => {
+				addTaskToDOM(task.text, task.completed, task.id);
+			});
+		}
+
+		// Save tasks to localStorage
+		function saveTasks() {
+			const taskItems = document.querySelectorAll('.task-item');
+			const tasks = [];
+			
+			taskItems.forEach(item => {
+				tasks.push({
+					id: item.dataset.id,
+					text: item.querySelector('.task-text').textContent,
+					completed: item.classList.contains('completed')
+				});
+			});
+			
+			localStorage.setItem('tasks', JSON.stringify(tasks));
+		}
+
+		// Add task to DOM
+		function addTaskToDOM(text, completed = false, id = Date.now().toString()) {
+			const taskItem = document.createElement('li');
+			taskItem.classList.add('task-item');
+			taskItem.dataset.id = id;
+			
+			if (completed) {
+				taskItem.classList.add('completed');
+			}
+			
+			taskItem.innerHTML = `
+				<input type="checkbox" class="task-checkbox" ${completed ? 'checked' : ''}>
+				<span class="task-text">${text}</span>
+				<button class="delete-btn">
+					<i class="fas fa-trash"></i>
+				</button>
+			`;
+			
+			// Add event listeners
+			const checkbox = taskItem.querySelector('.task-checkbox');
+			const deleteBtn = taskItem.querySelector('.delete-btn');
+			
+			checkbox.addEventListener('change', () => {
+				taskItem.classList.toggle('completed');
+				moveTask(taskItem);
+				saveTasks();
+			});
+			
+			deleteBtn.addEventListener('click', () => {
+				taskItem.remove();
+				saveTasks();
+			});
+			
+			// Add to appropriate list
+			if (completed) {
+				completedTaskList.appendChild(taskItem);
+			} else {
+				taskList.appendChild(taskItem);
+			}
+		}
+
+		// Move task between lists
+		function moveTask(taskItem) {
+			if (taskItem.classList.contains('completed')) {
+				completedTaskList.appendChild(taskItem);
+			} else {
+				taskList.appendChild(taskItem);
+			}
+		}
+
+		// Add new task
+		todoForm.addEventListener('submit', (e) => {
+			e.preventDefault();
+			
+			const taskText = todoInput.value.trim();
+			if (taskText !== '') {
+				addTaskToDOM(taskText);
+				saveTasks();
+				todoInput.value = '';
+			}
+		});
+
+		// Tab switching functionality
+		tabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				// Remove active class from all tabs and containers
+				tabs.forEach(t => t.classList.remove('active'));
+				taskContainers.forEach(c => c.classList.remove('active'));
+				
+				// Add active class to clicked tab and corresponding container
+				tab.classList.add('active');
+				const tabId = tab.dataset.tab;
+				document.getElementById(tabId + 'Tasks').classList.add('active');
+			});
+		});
+
+		// Load tasks on page load
+		document.addEventListener('DOMContentLoaded', loadTasks);
+
+		// Scroll animations
+		const scrollElements = document.querySelectorAll('.countdown-item, .quote, .task-container');
+
+		const elementInView = (el, percentageScroll = 100) => {
+			const elementTop = el.getBoundingClientRect().top;
+			return (
+				elementTop <= (window.innerHeight || document.documentElement.clientHeight) * (percentageScroll / 100)
+			);
+		};
+
+		const displayScrollElement = (element) => {
+			element.classList.add('fade-in');
+		};
+
+		const hideScrollElement = (element) => {
+			element.classList.remove('fade-in');
+		};
+
+		const handleScrollAnimation = () => {
+			scrollElements.forEach((el) => {
+				if (elementInView(el, 100)) {
+					displayScrollElement(el);
+				} else {
+					hideScrollElement(el);
+				}
+			});
+		};
+
+		window.addEventListener('scroll', () => {
+			handleScrollAnimation();
+		});
+
+		// Trigger once on load
+		handleScrollAnimation();
+	</script>
 </body>
 </html>
