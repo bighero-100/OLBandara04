@@ -411,36 +411,90 @@
         opacity: 0;
     }
 
-    @media (max-width: 480px) {
-        /* Adjust font sizes on mobile screens */
-        h1 {
-            font-size: 24px;
-        }
+    /* Add these media queries to fix mobile display issues */
+	@media (max-width: 480px) {
+		/* Adjust font sizes for better mobile display */
+		h1 {
+			font-size: 22px;
+		}
 
-        h2 {
-            font-size: 20px;
-        }
+		h2 {
+			font-size: 18px;
+		}
 
-        h3 {
-            font-size: 18px;
-        }
+		h3 {
+			font-size: 16px;
+		}
 
-        .quote {
-            font-size: 16px;
-        }
+		p {
+			font-size: 14px;
+		}
 
-        .task-text {
-            font-size: 14px;
-        }
+		/* Make countdown section more compact */
+		.countdown {
+			grid-template-columns: repeat(2, 1fr);
+			gap: 8px;
+		}
 
-        .countdown-value {
-            font-size: 22px;
-        }
+		.countdown-item {
+			padding: 10px 5px;
+		}
 
-        .countdown-label {
-            font-size: 12px;
-        }
-    }
+		.countdown-value {
+			font-size: 20px;
+		}
+
+		.countdown-label {
+			font-size: 12px;
+		}
+
+		/* Make task items more compact */
+		.task-item {
+			padding: 8px;
+			margin-bottom: 8px;
+		}
+
+		.task-text {
+			font-size: 14px;
+		}
+
+		/* Make form elements more compact */
+		.todo-input {
+			padding: 8px 10px;
+			font-size: 14px;
+		}
+
+		.add-btn {
+			padding: 8px 15px;
+		}
+
+		/* Make quote section more compact */
+		.quote {
+			font-size: 14px;
+			min-height: 100px;
+		}
+
+		/* Adjust glow button for mobile */
+		.glow-button {
+			padding: 12px 25px;
+			font-size: 16px;
+		}
+	}
+
+	/* Add additional media query for very small screens */
+	@media (max-width: 360px) {
+		.countdown {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.countdown-value {
+			font-size: 18px;
+		}
+		
+		h1 {
+			font-size: 20px;
+		}
+	}
 </style>
 
 </head>
