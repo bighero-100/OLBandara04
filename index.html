@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024">
+    <title>මගේ A/L සූදානම</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --card-bg: #fff;
+            --completed-bg: #e2e8f0;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary-color: #4cc9f0;
+            --secondary-color: #4895ef;
+            --text-color: #e2e8f0;
+            --bg-color: #1a202c;
+            --card-bg: #2d3748;
+            --completed-bg: #4a5568;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Sinhala', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Theme toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 100;
+        }
+
+        .theme-toggle svg {
+            fill: var(--text-color);
+            width: 24px;
+            height: 24px;
+            transition: var(--transition);
+        }
+
+        /* Todo form styles */
+        .todo-form {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .todo-input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 2px solid var(--primary-color);
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .todo-input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .add-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .add-btn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Task list styles */
+        .task-list {
+            list-style-type: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 8px;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .task-item.completed {
+            background-color: var(--completed-bg);
+            opacity: 0.8;
+        }
+
+        .task-text {
+            flex: 1;
+            margin: 0 10px;
+        }
+
+        .completed .task-text {
+            text-decoration: line-through;
+        }
+
+        .task-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .delete-btn {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .delete-btn:hover {
+            background-color: #c1121f;
+        }
+
+        /* Quote section */
+        .quote-section {
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .quote {
+            font-size: 18px;
+            font-style: italic;
+            margin-bottom: 10px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .author {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        /* Countdown section */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 5px;
+        }
+
+        .countdown-value {
+            font-size: 28px;
+            font-weight: bold;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Tabs for completed tasks */
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: var(--card-bg);
+            border: none;
+            transition: var(--transition);
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab:first-child {
+            border-radius: 5px 0 0 5px;
+        }
+
+        .tab:last-child {
+            border-radius: 0 5px 5px 0;
+        }
+
+        .tab.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .task-container {
+            display: none;
+        }
+
+        .task-container.active {
+            display: block;
+        }
+
+        /* Animation for quotes */
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(10px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-10px); }
+        }
+
+        .quote-container {
+            animation: fadeInOut 8s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="theme-toggle" id="themeToggle">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" style="display:none;">
+            <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" />
+        </svg>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>මගේ A/L සූදානම</h1>
+            <p>ඔබේ විභාග සාර්ථකත්වය වෙනුවෙන් මෙම වෙබ් අඩවිය නිර්මාණය කර ඇත.</p>
+        </header>
+
+        <div class="grid">
+            <div class="card">
+                <h2>කාල ගණනය</h2>
+                <p>2025 නොවැම්බර් 5 දක්වා ඉතිරි කාලය:</p>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">0</span>
+                        <span class="countdown-label">දින</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">0</span>
+                        <span class="countdown-label">පැය</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">0</span>
+                        <span class="countdown-label">මිනිත්තු</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">0</span>
+                        <span class="countdown-label">තත්පර</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card quote-section">
+                <h2>අභිප්රේරණ උපදේශ</h2>
+                <div id="quoteContainer" class="quote">
+                    <p id="quote">උපුටා ගැනීම් ලෝඩ් වෙමින්...</p>
+                </div>
+                <p class="author" id="author"></p>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 20px;">
+            <h2>කාර්යයන් කළමනාකරණය</h2>
+            
+            <div class="tabs">
+                <button class="tab active" data-tab="pending">කළ යුතු කාර්යයන්</button>
+                <button class="tab" data-tab="completed">සම්පූර්ණ කළ කාර්යයන්</button>
+            </div>
+            
+            <div id="pendingTasks" class="task-container active">
+                <form id="todoForm" class="todo-form">
+                    <input type="text" id="todoInput" class="todo-input" placeholder="නව කාර්යයක් ඇතුළත් කරන්න..." required>
+                    <button type="submit" class="add-btn">එකතු කරන්න</button>
+                </form>
+                
+                <ul id="taskList" class="task-list">
+                    <!-- Tasks will be added here dynamically -->
+                </ul>
+            </div>
+            
+            <div id="completedTasks" class="task-container">
+                <ul id="completedTaskList" class="task-list">
+                    <!-- Completed tasks will be added here dynamically -->
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+	<canvas id="workChart" width="800" height="400"></canvas>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.querySelector('.sun-icon');
+        const moonIcon = document.querySelector('.moon-icon');
+
+        // Load theme from localStorage
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                sunIcon.style.display = 'none';
+                moonIcon.style.display = 'block';
+            } else {
+                localStorage.setItem('theme', 'light');
+                sunIcon.style.display = 'block';
+                moonIcon.style.display = 'none';
+            }
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const examDate = new Date('November 5, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const timeLeft = examDate - now;
+            
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Todo List Functionality
+        const todoForm = document.getElementById('todoForm');
+        const todoInput = document.getElementById('todoInput');
+        const taskList = document.getElementById('taskList');
+        const completedTaskList = document.getElementById('completedTaskList');
+        
+        // Load tasks from localStorage
+        let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+        let completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+        // Render tasks
+        function renderTasks() {
+            taskList.innerHTML = '';
+            completedTaskList.innerHTML = '';
+            
+            tasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = 'task-item';
+                li.innerHTML = `
+                    <input type="checkbox" class="task-checkbox">
+                    <span class="task-text">${task}</span>
+                    <button class="delete-btn">මකන්න</button>
+                `;
+                
+                const checkbox = li.querySelector('.task-checkbox');
+                checkbox.addEventListener('change', () => {
+                    completedTasks.push(task);
+                    tasks.splice(index, 1);
+                    
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+                    
+                    renderTasks();
+                });
+                
+                const deleteBtn = li.querySelector('.delete-btn');
+                deleteBtn.addEventListener('click', () => {
+                    tasks.splice(index, 1);
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    renderTasks();
+                });
+                
+                taskList.appendChild(li);
+            });
+            
+            completedTasks.forEach((task, index) => {
+                const li = document.createElement('li');
+                li.className = 'task-item completed';
+                li.innerHTML = `
+                    <input type="checkbox" class="task-checkbox" checked>
+                    <span class="task-text">${task}</span>
+                    <button class="delete-btn">මකන්න</button>
+                `;
+                
+                const checkbox = li.querySelector('.task-checkbox');
+                checkbox.addEventListener('change', () => {
+                    tasks.push(task);
+                    completedTasks.splice(index, 1);
+                    
+                    localStorage.setItem('tasks', JSON.stringify(tasks));
+                    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+                    
+                    renderTasks();
+                });
+                
+                const deleteBtn = li.querySelector('.delete-btn');
+                deleteBtn.addEventListener('click', () => {
+                    completedTasks.splice(index, 1);
+                    localStorage.setItem('completedTasks', JSON.stringify(completedTasks));
+                    renderTasks();
+                });
+                
+                completedTaskList.appendChild(li);
+            });
+        }
+
+        // Add new task
+        todoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newTask = todoInput.value.trim();
+            
+            if (newTask) {
+                tasks.push(newTask);
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                todoInput.value = '';
+                renderTasks();
+            }
+        });
+
+        // Tab switching
+        const tabs = document.querySelectorAll('.tab');
+        const taskContainers = document.querySelectorAll('.task-container');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.dataset.tab;
+                
+                tabs.forEach(t => t.classList.remove('active'));
+                taskContainers.forEach(c => c.classList.remove('active'));
+                
+                tab.classList.add('active');
+                document.getElementById(tabName + 'Tasks').classList.add('active');
+            });
+        });
+
+        // Motivational Quotes
+        const quotes = [
+            {
+                text: "ඔබ කවදාවත් පරාජය නොවේ නම්, ඔබ ප්‍රමාණවත් තරම් උත්සාහ නොකරන්නේය.",
+                author: "අල්බට් අයින්ස්ටයින්"
+            },
+            {
+                text: "අධ්‍යාපනය යනු අපි ඉගෙන ගත් දේ අමතක වූ විට ඉතිරි වන දෙයයි.",
+                author: "බී. එෆ්. ස්කිනර්"
+            },
+            {
+                text: "අද කළ හැකි දේ හෙට වෙනුවෙන් කල් නොදමන්න.",
+                author: "බෙන්ජමින් ෆ්රැන්ක්ලින්"
+            },
+            {
+                text: "ඉගෙනීම යනු ඔබේ මනස සකස් කිරීමයි, සම්පූර්ණ කිරීම නොවේ.",
+                author: "මර්කස් ඔරේලියස්"
+            },
+            {
+                text: "සාර්ථකත්වය යනු ලැබූ දේවල් නොව, බාධක ජය ගැනීමයි.",
+                author: "විනස්ටන් චර්චිල්"
+            },
+            {
+                text: "ඔබ කවදා හෝ වැටුනත්, නැගිටීම අමතක නොකරන්න.",
+                author: "කන්ෆියුසියස්"
+            },
+            {
+                text: "දිනපතා සුළු දියුණුවක් කාලයත් සමඟ විශාල වෙනසක් ඇති කරයි.",
+                author: "චාල්ස් කැල්ටන්"
+            },
+            {
+                text: "විභාගය යනු අභියෝගයකි, බියක් නොවේ.",
+                author: "සිංහල ප්‍රස්ථාව"
+            },
+            {
+                text: "අසීරු යැයි සිතන දේ අත්හරින්නට එපා, අසීරු යැයි සිතීම අත්හරින්න.",
+                author: "සිංහල ප්‍රස්ථාව"
+            },
+            {
+                text: "දැනුම පහන් සිළුවකි, එහි ආලෝකය හැම තැනම දැනෙයි.",
+                author: "සිංහල ප්‍රස්ථාව"
+            }
+        ];
+
+        function showRandomQuote() {
+            const quoteContainer = document.getElementById('quoteContainer');
+            const quoteElement = document.getElementById('quote');
+            const authorElement = document.getElementById('author');
+            
+            // Create a new quote container with animation
+            const newQuoteContainer = document.createElement('div');
+            newQuoteContainer.className = 'quote-container';
+            
+            // Get random quote
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            const randomQuote = quotes[randomIndex];
+            
+            // Update the quote and author
+            quoteElement.textContent = randomQuote.text;
+            authorElement.textContent = randomQuote.author;
+            
+            // Apply the animation
+            quoteContainer.style.opacity = '0';
+            setTimeout(() => {
+                quoteContainer.style.opacity = '1';
+            }, 300);
+        }
+
+        // Show initial quote
+        showRandomQuote();
+        
+        // Change quote every 10 seconds
+        setInterval(showRandomQuote, 10000);
+
+        // Initialize
+        renderTasks();
+		
+		 const ctx = document.getElementById('workChart').getContext('2d');
+
+		// Load data from localStorage
+		const savedData = JSON.parse(localStorage.getItem('workHours')) || [];
+
+		// Create days for April (1-30)
+		const labels = Array.from({length: 30}, (_, i) => `April ${i+1}`);
+		
+
+		const data = {
+		  labels: labels,
+		  datasets: [{
+			label: 'Daily Work Hours',
+			data: savedData.length ? savedData : Array(30).fill(null),
+			borderColor: 'red',
+			backgroundColor: 'transparent',
+			tension: 0.3, // smooth line
+			fill: false,
+			pointRadius: 4,
+			pointBackgroundColor: 'red',
+		  }]
+		};
+
+		const config = {
+		  type: 'line',
+		  data: data,
+		  options: {
+			scales: {
+			  y: {
+				min: 0,
+				max: 24,
+				ticks: {
+				  stepSize: 4
+				},
+				title: {
+				  display: true,
+				  text: 'Hours Worked'
+				}
+			  },
+			  x: {
+				title: {
+				  display: true,
+				  text: 'Day of April'
+				}
+			  }
+			},
+			plugins: {
+			  legend: {
+				display: false
+			  }
+			}
+		  }
+		};
+
+		const workChart = new Chart(ctx, config);
+
+		// Function to update chart with new data
+		function updateWorkHours(day, hours) {
+		  workChart.data.datasets[0].data[day - 1] = hours;
+		  workChart.update();
+		  localStorage.setItem('workHours', JSON.stringify(workChart.data.datasets[0].data));
+		}
+
+		// Example: Update day 1 with 8 hours
+		// updateWorkHours(1, 8); // Uncomment and use this way to update
+
+	  </script>
+
+	  <div style="margin-top:50px;">
+		<input type="number" id="day" placeholder="Day (1-30)" min="1" max="30">
+		<input type="number" id="hours" placeholder="Hours (0-24)" min="0" max="24">
+		<button onclick="updateWorkHours(
+		  document.getElementById('day').value,
+		  document.getElementById('hours').value
+		)">Save</button>
+    </script>
+</body>
+</html>
