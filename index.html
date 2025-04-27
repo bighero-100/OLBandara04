@@ -2,9 +2,8 @@
 <html lang="si">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=1024">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>මගේ A/L සූදානම</title>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         :root {
             --primary-color: #4361ee;
@@ -287,6 +286,27 @@
         .quote-container {
             animation: fadeInOut 8s forwards;
         }
+		
+		 /* Style the button with transparent background */
+        .centered-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: transparent; /* Transparent background */
+            color: background-color: var(--primary-color); /* Blue text color */
+            border: 2px solid background-color: var(--primary-color); /* Blue border */
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hover effect */
+        .centered-button:hover {
+            background-color: #0066cc; /* Blue background on hover */
+            color: white; /* White text on hover */
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -365,8 +385,8 @@
         </div>
     </div>
 	
-	<canvas id="workChart" width="800" height="400"></canvas>
-
+	<a href="workhourscount.html" class="centered-button">Click Me</a> <!-- Link -->
+	
     <script>
         // Theme toggle functionality
         const themeToggle = document.getElementById('themeToggle');
@@ -595,82 +615,6 @@
 
         // Initialize
         renderTasks();
-		
-		 const ctx = document.getElementById('workChart').getContext('2d');
-
-		// Load data from localStorage
-		const savedData = JSON.parse(localStorage.getItem('workHours')) || [];
-
-		// Create days for April (1-30)
-		const labels = Array.from({length: 30}, (_, i) => `April ${i+1}`);
-		
-
-		const data = {
-		  labels: labels,
-		  datasets: [{
-			label: 'Daily Work Hours',
-			data: savedData.length ? savedData : Array(30).fill(null),
-			borderColor: 'red',
-			backgroundColor: 'transparent',
-			tension: 0.3, // smooth line
-			fill: false,
-			pointRadius: 4,
-			pointBackgroundColor: 'red',
-		  }]
-		};
-
-		const config = {
-		  type: 'line',
-		  data: data,
-		  options: {
-			scales: {
-			  y: {
-				min: 0,
-				max: 24,
-				ticks: {
-				  stepSize: 4
-				},
-				title: {
-				  display: true,
-				  text: 'Hours Worked'
-				}
-			  },
-			  x: {
-				title: {
-				  display: true,
-				  text: 'Day of April'
-				}
-			  }
-			},
-			plugins: {
-			  legend: {
-				display: false
-			  }
-			}
-		  }
-		};
-
-		const workChart = new Chart(ctx, config);
-
-		// Function to update chart with new data
-		function updateWorkHours(day, hours) {
-		  workChart.data.datasets[0].data[day - 1] = hours;
-		  workChart.update();
-		  localStorage.setItem('workHours', JSON.stringify(workChart.data.datasets[0].data));
-		}
-
-		// Example: Update day 1 with 8 hours
-		// updateWorkHours(1, 8); // Uncomment and use this way to update
-
-	  </script>
-
-	  <div style="margin-top:50px;">
-		<input type="number" id="day" placeholder="Day (1-30)" min="1" max="30">
-		<input type="number" id="hours" placeholder="Hours (0-24)" min="0" max="24">
-		<button onclick="updateWorkHours(
-		  document.getElementById('day').value,
-		  document.getElementById('hours').value
-		)">Save</button>
     </script>
 </body>
 </html>
