@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Work Time</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    #workChart {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-container {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .input-container input {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 150px;
+    }
+
+    .input-container button {
+      padding: 10px 20px;
+      background-color: #ff5733;
+      color: white;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .input-container button:hover {
+      background-color: #ff3b00;
+    }
+
+    .stats-container {
+      display: flex;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .stat {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 200px;
+    }
+
+    .stat h3 {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    .stat .value {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .stat .hours {
+      font-size: 1.5rem;
+      color: #ff5733;
+    }
+
+    .month-switch {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .month-switch button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .month-switch button:hover {
+      background-color: #45a049;
+    }
+
+    .stat .value,
+    .stat .hours {
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Work Time</h1>
+  <canvas id="workChart" width="800" height="400"></canvas>
+
+  <div class="input-container">
+    <input type="number" id="day" placeholder="Day (1-30)" min="1" max="30">
+    <input type="number" id="hours" placeholder="Hours (0-24)" min="0" max="24">
+    <button onclick="updateWorkHours(
+      document.getElementById('day').value,
+      document.getElementById('hours').value
+    )">Save</button>
+  </div>
+
+  <div class="stats-container">
+    <div class="stat">
+      <h3>Total Hours</h3>
+      <div class="value" id="totalHours">0</div>
+      <div class="hours">H</div>
+    </div>
+    <div class="stat">
+      <h3>Total Weekly Hours</h3>
+      <div class="value" id="weeklyHours">0</div>
+      <div class="hours">H</div>
+    </div>
+    <div class="stat">
+      <h3>Today's Work</h3>
+      <div class="value" id="todayHours">0</div>
+      <div class="hours">H</div>
+    </div>
+  </div>
+
+  <div class="month-switch">
+    <button onclick="switchMonth()">Switch to Next Month</button>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('workChart').getContext('2d');
+    const totalHoursElement = document.getElementById('totalHours');
+    const weeklyHoursElement = document.getElementById('weeklyHours');
+    const todayHoursElement = document.getElementById('todayHours');
+
+    let currentMonth = 'April'; // Starting month is April
+
+    // Months and their respective days
+    const monthDays = {
+      'April': 30,
+      'May': 31,
+      'June': 30,
+      'July': 31,
+      'August': 31,
+      'September': 30,
+      'October': 31,
+      'November': 30
+    };
+
+    const createLabels = (month) => {
+      const daysInMonth = monthDays[month];
+      return Array.from({ length: daysInMonth }, (_, i) => `${month} ${i + 1}`);
+    };
+
+    const loadMonthData = (month) => {
+      // Load saved data from localStorage for the current month
+      const savedData = JSON.parse(localStorage.getItem(`workHours_${month}`)) || [];
+      return savedData;
+    };
+
+    const saveMonthData = (month, data) => {
+      // Save the data to localStorage with the month key
+      localStorage.setItem(`workHours_${month}`, JSON.stringify(data));
+    };
+
+    const updateChartForMonth = (month) => {
+      const labels = createLabels(month);
+      const savedData = loadMonthData(month);
+
+      workChart.data.labels = labels;
+      workChart.data.datasets[0].data = savedData.length ? savedData : Array(labels.length).fill(null);
+      workChart.update();
+      updateTotalHours(savedData);
+      updateWeeklyHours(savedData);
+      updateTodayHours(savedData);
+    };
+
+    const data = {
+      labels: createLabels(currentMonth),
+      datasets: [{
+        label: 'Daily Work Hours',
+        data: loadMonthData(currentMonth).length ? loadMonthData(currentMonth) : Array(30).fill(null),
+        borderColor: 'red',
+        backgroundColor: 'transparent',
+        tension: 0.3,
+        fill: false,
+        pointRadius: 4,
+        pointBackgroundColor: 'red',
+      }]
+    };
+
+    const config = {
+      type: 'line',
+      data: data,
+      options: {
+        scales: {
+          y: {
+            min: 0,
+            max: 24,
+            ticks: {
+              stepSize: 4
+            },
+            title: {
+              display: true,
+              text: 'Hours Worked'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Day of Month'
+            }
+          }
+        },
+        plugins: {
+          legend: {
+            display: false
+          }
+        }
+      }
+    };
+
+    const workChart = new Chart(ctx, config);
+
+    function updateWorkHours(day, hours) {
+      if (day < 1 || day > monthDays[currentMonth] || hours < 0 || hours > 24) {
+        alert("Please enter valid day and hours.");
+        return;
+      }
+      
+      let savedData = loadMonthData(currentMonth);
+      savedData[day - 1] = hours;
+      workChart.data.datasets[0].data = savedData;
+      workChart.update();
+      saveMonthData(currentMonth, savedData);
+      
+      updateTotalHours(savedData);
+      updateWeeklyHours(savedData);
+      updateTodayHours(savedData);
+    }
+
+    function updateTotalHours(savedData) {
+      const total = savedData.reduce((sum, hours) => sum + (hours || 0), 0);
+      totalHoursElement.textContent = total;
+    }
+
+    function updateWeeklyHours(savedData) {
+      const currentWeek = Math.ceil(new Date().getDate() / 7);
+      const startDay = (currentWeek - 1) * 7;
+      const endDay = currentWeek * 7;
+      const weeklyTotal = savedData.slice(startDay, endDay).reduce((sum, hours) => sum + (hours || 0), 0);
+      weeklyHoursElement.textContent = weeklyTotal;
+    }
+
+    function updateTodayHours(savedData) {
+      const today = new Date().getDate();
+      const todayWorkHours = savedData[today - 1] || 0;
+      todayHoursElement.textContent = todayWorkHours;
+    }
+
+    function switchMonth() {
+      const months = Object.keys(monthDays);
+      const currentMonthIndex = months.indexOf(currentMonth);
+      const nextMonthIndex = (currentMonthIndex + 1) % months.length;
+      currentMonth = months[nextMonthIndex];
+
+      updateChartForMonth(currentMonth);
+    }
+
+    // Initial load
+    updateChartForMonth(currentMonth);
+  </script>
+</body>
+</html>
