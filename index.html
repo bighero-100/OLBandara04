@@ -5,453 +5,444 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>මගේ A/L සූදානම</title>
     <style>
-		body {
-		background-color: var(--bg-color);
-		color: var(--text-color);
-		transition: var(--transition);
-		line-height: 1.6;
-		background-image: 
-			radial-gradient(circle at 25% 25%, rgba(142, 45, 226, 0.05) 0%, transparent 50%),
-			radial-gradient(circle at 75% 75%, rgba(74, 0, 224, 0.05) 0%, transparent 50%);
-		background-attachment: fixed;
-	}
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: var(--transition);
+        line-height: 1.6;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(142, 45, 226, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(74, 0, 224, 0.05) 0%, transparent 50%);
+        background-attachment: fixed;
+    }
 
-	.dark-mode body {
-		background-image: 
-			radial-gradient(circle at 25% 25%, rgba(0, 247, 255, 0.05) 0%, transparent 50%),
-			radial-gradient(circle at 75% 75%, rgba(72, 149, 239, 0.05) 0%, transparent 50%);
-	}
-        :root {
-		--primary-color: #8e2de2;
-		--secondary-color: #4a00e0;
-		--text-color: #2d3748;
-		--bg-color: #f8f9fa;
-		--card-bg: #fff;
-		--completed-bg: #e2e8f0;
-		--shadow: 0 10px 15px rgba(142, 45, 226, 0.1);
-		--transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	}
+    .dark-mode body {
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(0, 247, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(72, 149, 239, 0.05) 0%, transparent 50%);
+    }
 
-	.dark-mode {
-		--primary-color: #00f7ff;
-		--secondary-color: #4895ef;
-		--text-color: #e2e8f0;
-		--bg-color: #111827;
-		--card-bg: #1f2937;
-		--completed-bg: #374151;
-		--shadow: 0 10px 15px rgba(0, 247, 255, 0.2);
-	}
+    :root {
+        --primary-color: #8e2de2;
+        --secondary-color: #4a00e0;
+        --text-color: #2d3748;
+        --bg-color: #f8f9fa;
+        --card-bg: #fff;
+        --completed-bg: #e2e8f0;
+        --shadow: 0 10px 15px rgba(142, 45, 226, 0.1);
+        --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Noto Sans Sinhala', 'Segoe UI', sans-serif;
-        }
+    .dark-mode {
+        --primary-color: #00f7ff;
+        --secondary-color: #4895ef;
+        --text-color: #e2e8f0;
+        --bg-color: #111827;
+        --card-bg: #1f2937;
+        --completed-bg: #374151;
+        --shadow: 0 10px 15px rgba(0, 247, 255, 0.2);
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            transition: var(--transition);
-            line-height: 1.6;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Noto Sans Sinhala', 'Segoe UI', sans-serif;
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        transition: var(--transition);
+        line-height: 1.6;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px 0;
-        }
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+    }
 
-        h1, h2, h3 {
-            margin-bottom: 15px;
-            color: var(--primary-color);
-        }
+    header {
+        text-align: center;
+        margin-bottom: 40px;
+        padding: 20px 0;
+    }
 
+    h1, h2, h3 {
+        margin-bottom: 15px;
+        color: var(--primary-color);
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    @media (min-width: 768px) {
         .grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    .card {
+        background-color: var(--card-bg);
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+        transition: var(--transition);
+    }
+
+    .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Theme toggle */
+    .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: var(--card-bg);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        z-index: 100;
+    }
+
+    .theme-toggle svg {
+        fill: var(--text-color);
+        width: 24px;
+        height: 24px;
+        transition: var(--transition);
+    }
+
+    /* Todo form styles */
+    .todo-form {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .todo-input {
+        flex: 1;
+        padding: 10px 15px;
+        border: 2px solid var(--primary-color);
+        border-radius: 5px 0 0 5px;
+        font-size: 16px;
+        background-color: var(--card-bg);
+        color: var(--text-color);
+    }
+
+    .todo-input:focus {
+        outline: none;
+        border-color: var(--secondary-color);
+    }
+
+    .add-btn {
+        padding: 10px 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .add-btn:hover {
+        background-color: var(--secondary-color);
+    }
+
+    /* Task list styles */
+    .task-list {
+        list-style-type: none;
+    }
+
+    .task-item {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        margin-bottom: 8px;
+        background-color: var(--card-bg);
+        border-radius: 5px;
+        transition: var(--transition);
+    }
+
+    .task-item.completed {
+        background-color: var(--completed-bg);
+        opacity: 0.8;
+    }
+
+    .task-text {
+        flex: 1;
+        margin: 0 10px;
+    }
+
+    .completed .task-text {
+        text-decoration: line-through;
+    }
+
+    .task-checkbox {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+    .delete-btn {
+        background-color: #e63946;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .delete-btn:hover {
+        background-color: #c1121f;
+    }
+
+    /* Quote section */
+    .quote-section {
+        text-align: center;
+        padding: 30px 0;
+    }
+
+    .quote {
+        font-size: 18px;
+        font-style: italic;
+        margin-bottom: 10px;
+        min-height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .author {
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    /* Countdown section */
+    .countdown {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .countdown-item {
+        text-align: center;
+        padding: 15px;
+        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        color: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .countdown-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .countdown-value {
+        font-size: 28px;
+        font-weight: bold;
+        display: block;
+    }
+
+    .countdown-label {
+        font-size: 14px;
+        opacity: 0.9;
+    }
+
+    /* Tabs for completed tasks */
+    .tabs {
+        display: flex;
+        margin-bottom: 20px;
+    }
+
+    .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        background-color: var(--card-bg);
+        border: none;
+        transition: var(--transition);
+        flex: 1;
+        text-align: center;
+    }
+
+    .tab:first-child {
+        border-radius: 5px 0 0 5px;
+    }
+
+    .tab:last-child {
+        border-radius: 0 5px 5px 0;
+    }
+
+    .tab.active {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .task-container {
+        display: none;
+    }
+
+    .task-container.active {
+        display: block;
+    }
+
+    .task-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        margin-bottom: 10px;
+        background-color: var(--card-bg);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        border-left: 4px solid var(--primary-color);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        animation: slideIn 0.3s ease-out;
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    .task-item:hover {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transform: translateX(5px);
+    }
+
+    /* Animation for quotes */
+    @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(10px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+    }
+
+    .quote-container {
+        animation: fadeInOut 8s forwards;
+    }
+
+    .glow-button {
+        display: inline-block;
+        padding: 15px 35px;
+        font-size: 20px;
+        color: #fff;
+        background: linear-gradient(45deg, #8e2de2, #4a00e0);
+        border: none;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .glow-button:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(45deg, #4a00e0, #8e2de2);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.5s ease;
+    }
+
+    .glow-button:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 15px 25px rgba(142, 45, 226, 0.5);
+    }
+
+    .glow-button:hover:before {
+        opacity: 1;
+    }
+
+    .dark-mode .glow-button {
+        background: linear-gradient(45deg, #00f7ff, #4895ef);
+        box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
+    }
+
+    .dark-mode .glow-button:before {
+        background: linear-gradient(45deg, #4895ef, #00f7ff);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 20px;
+        animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .grid {
+        animation: fadeIn 1s ease-out 0.2s forwards;
+        opacity: 0;
+    }
+
+    .card {
+        animation: fadeIn 1.2s ease-out 0.4s forwards;
+        opacity: 0;
+    }
+
+    @media (max-width: 480px) {
+        /* Adjust font sizes on mobile screens */
+        h1 {
+            font-size: 24px;
         }
 
-        @media (min-width: 768px) {
-            .grid {
-                grid-template-columns: 1fr 1fr;
-            }
+        h2 {
+            font-size: 20px;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-        }
-
-        .card:hover {
-		transform: translateY(-10px) scale(1.02);
-		box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-		transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-	}
-        /* Theme toggle */
-        .theme-toggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: var(--card-bg);
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: var(--shadow);
-            z-index: 100;
-        }
-
-        .theme-toggle svg {
-            fill: var(--text-color);
-            width: 24px;
-            height: 24px;
-            transition: var(--transition);
-        }
-
-        /* Todo form styles */
-        .todo-form {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .todo-input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 2px solid var(--primary-color);
-            border-radius: 5px 0 0 5px;
-            font-size: 16px;
-            background-color: var(--card-bg);
-            color: var(--text-color);
-        }
-
-        .todo-input:focus {
-            outline: none;
-            border-color: var(--secondary-color);
-        }
-
-        .add-btn {
-            padding: 10px 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .add-btn:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* Task list styles */
-        .task-list {
-            list-style-type: none;
-        }
-
-        .task-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 8px;
-            background-color: var(--card-bg);
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-
-        .task-item.completed {
-            background-color: var(--completed-bg);
-            opacity: 0.8;
-        }
-
-        .task-text {
-            flex: 1;
-            margin: 0 10px;
-        }
-
-        .completed .task-text {
-            text-decoration: line-through;
-        }
-
-        .task-checkbox {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .delete-btn {
-            background-color: #e63946;
-            color: white;
-            border: none;
-            border-radius: 3px;
-            padding: 5px 10px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .delete-btn:hover {
-            background-color: #c1121f;
-        }
-
-        /* Quote section */
-        .quote-section {
-            text-align: center;
-            padding: 30px 0;
+        h3 {
+            font-size: 18px;
         }
 
         .quote {
-            font-size: 18px;
-            font-style: italic;
-            margin-bottom: 10px;
-            min-height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-size: 16px;
         }
 
-        .author {
-            font-weight: bold;
-            color: var(--primary-color);
+        .task-text {
+            font-size: 14px;
         }
 
-        /* Countdown section */
-        .countdown {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .countdown-item {
-		text-align: center;
-		padding: 15px;
-		background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-		color: white;
-		border-radius: 10px;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-		transition: transform 0.3s ease;
-		}
-
-		.countdown-item:hover {
-			transform: translateY(-5px);
-		}
-		
         .countdown-value {
-            font-size: 28px;
-            font-weight: bold;
-            display: block;
+            font-size: 22px;
         }
 
         .countdown-label {
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: 12px;
         }
+    }
+</style>
 
-        /* Tabs for completed tasks */
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-        }
-
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: var(--card-bg);
-            border: none;
-            transition: var(--transition);
-            flex: 1;
-            text-align: center;
-        }
-
-        .tab:first-child {
-            border-radius: 5px 0 0 5px;
-        }
-
-        .tab:last-child {
-            border-radius: 0 5px 5px 0;
-        }
-
-        .tab.active {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .task-container {
-            display: none;
-        }
-
-        .task-container.active {
-            display: block;
-        }
-		
-		.task-item {
-		display: flex;
-		align-items: center;
-		padding: 12px;
-		margin-bottom: 10px;
-		background-color: var(--card-bg);
-		border-radius: 8px;
-		transition: all 0.3s ease;
-		border-left: 4px solid var(--primary-color);
-		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-		animation: slideIn 0.3s ease-out;
-		}
-
-		@keyframes slideIn {
-			from {
-				opacity: 0;
-				transform: translateX(-20px);
-			}
-			to {
-				opacity: 1;
-				transform: translateX(0);
-			}
-		}
-
-		.task-item:hover {
-			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-			transform: translateX(5px);
-		}
-
-        /* Animation for quotes */
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(10px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-10px); }
-        }
-
-        .quote-container {
-            animation: fadeInOut 8s forwards;
-        }
-		
-		.glow-button {
-		display: inline-block;
-		padding: 15px 35px;
-		font-size: 20px;
-		color: #fff;
-		background: linear-gradient(45deg, #8e2de2, #4a00e0);
-		border: none;
-		border-radius: 50px;
-		text-decoration: none;
-		font-weight: bold;
-		text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-		box-shadow: 0 5px 15px rgba(142, 45, 226, 0.4);
-		transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-		position: relative;
-		overflow: hidden;
-		z-index: 1;
-	}
-
-	.glow-button:before {
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(45deg, #4a00e0, #8e2de2);
-		opacity: 0;
-		z-index: -1;
-		transition: opacity 0.5s ease;
-	}
-
-	.glow-button:hover {
-		transform: translateY(-5px) scale(1.05);
-		box-shadow: 0 15px 25px rgba(142, 45, 226, 0.5);
-	}
-
-	.glow-button:hover:before {
-		opacity: 1;
-	}
-
-	.dark-mode .glow-button {
-		background: linear-gradient(45deg, #00f7ff, #4895ef);
-		box-shadow: 0 5px 15px rgba(0, 247, 255, 0.4);
-	}
-
-	.dark-mode .glow-button:before {
-		background: linear-gradient(45deg, #4895ef, #00f7ff);
-	}
-	
-	@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-	}
-
-	.container {
-		max-width: 1000px;
-		margin: 0 auto;
-		padding: 20px;
-		animation: fadeIn 0.8s ease-out forwards;
-	}
-
-	.grid {
-		animation: fadeIn 1s ease-out 0.2s forwards;
-		opacity: 0;
-	}
-
-	.card {
-		animation: fadeIn 1.2s ease-out 0.4s forwards;
-		opacity: 0;
-	}
-	
-	@keyframes fadeInOut {
-    0% { opacity: 0; transform: translateY(20px); }
-    10% { opacity: 1; transform: translateY(0); }
-    90% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-20px); }
-	}
-
-	.quote {
-		font-size: 20px;
-		font-style: italic;
-		margin-bottom: 15px;
-		min-height: 120px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		position: relative;
-		padding: 10px;
-	}
-
-	.quote:before {
-		content: '"';
-		font-size: 60px;
-		position: absolute;
-		opacity: 0.1;
-		top: -20px;
-		left: 0;
-		color: var(--primary-color);
-	}
-
-	.quote:after {
-		content: '"';
-		font-size: 60px;
-		position: absolute;
-		opacity: 0.1;
-		bottom: -50px;
-		right: 0;
-		color: var(--primary-color);
-	}
-
-	.quote-container {
-		animation: fadeInOut 10s forwards;
-	}
-    </style>
 </head>
 <body>
     <div class="theme-toggle" id="themeToggle">
