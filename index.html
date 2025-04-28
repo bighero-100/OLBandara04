@@ -786,33 +786,12 @@
             40% { transform: translateY(-20px) translateX(-50%); }
             60% { transform: translateY(-10px) translateX(-50%); }
         }
-		
-		body001{
-			height: 100vh;
-			margin: 0;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: #f9f9f9;
-		  }
-		  .container {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		  }
-		  canvas {
-			background: #fff;
-			border: 2px solid #000;
-			box-shadow: 0 0 10px rgba(0,0,0,0.2);
-		  }
-</style>
-
     </style>
 </head>
 <body>
     <div class="nav-container">
         <div class="navbar">
-            <a href="#" class="logo">A/L Kuppiya</a>
+            <a href="#" class="logo">A/L Prep</a>
             <div class="nav-links">
                 <a href="#countdown" class="nav-link">Time Countdown</a>
                 <a href="#quotes" class="nav-link">Motivation</a>
@@ -905,13 +884,6 @@
             <i class="fas fa-clock"></i> ඔයා අද දවසට වැඩ කරපු පැය ගණන සටහන් කරන්න
         </a>
     </section>
-	
-	<body001>
-	  <div class="container">
-		<canvas id="myGraph" width="700" height="500"></canvas>
-	  </div>
-	</body001>
-
 
     <footer class="footer">
         <div class="footer-content">
@@ -919,269 +891,15 @@
 			<h4 class="footer-niko">ඔබේ අධ්‍යාපන ගමනේ සහකරු</h4>
             <div class="social-links">
                 <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://wa.me/94768855659" class="social-link"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
                 <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-                <a href="https://t.me/Lakshan856_004" class="social-link"><i class="fab fa-telegram"></i></a>
+                <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
             </div>
-            <p class="copyright">&copy; 2025 A/L Kuppiya. All Rights Reserved.</p>
+            <p class="copyright">&copy; 2025 A/L Prep. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
-		 document.addEventListener('DOMContentLoaded', function() {
-		  const canvas = document.getElementById('myGraph');
-		  const ctx = canvas.getContext('2d');
-		  
-		  // Clear canvas with white background
-		  ctx.fillStyle = "white";
-		  ctx.fillRect(0, 0, canvas.width, canvas.height);
-		  
-		  // Define margins
-		  const margin = {
-			left: 70,
-			right: 50,
-			top: 50,
-			bottom: 60
-		  };
-		  
-		  // Define graph dimensions
-		  const graphWidth = canvas.width - margin.left - margin.right;
-		  const graphHeight = canvas.height - margin.top - margin.bottom;
-		  
-		  // Origin point
-		  const origin = {
-			x: margin.left,
-			y: canvas.height - margin.bottom
-		  };
-		  
-		  // Draw axes
-		  function drawAxes() {
-			ctx.beginPath();
-			ctx.strokeStyle = "#990000";
-			ctx.lineWidth = 2;
-			
-			// X-axis
-			ctx.moveTo(origin.x, origin.y);
-			ctx.lineTo(origin.x + graphWidth, origin.y);
-			
-			// Y-axis
-			ctx.moveTo(origin.x, origin.y);
-			ctx.lineTo(origin.x, margin.top);
-			
-			ctx.stroke();
-			
-			// Arrows
-			drawArrow(origin.x + graphWidth, origin.y, 0);  // X-axis arrow
-			drawArrow(origin.x, margin.top, Math.PI * 1.5); // Y-axis arrow
-			
-			// X-axis label (කාලය - Time)
-			ctx.font = "bold 18px Arial";
-			ctx.fillStyle = "#990000";
-			ctx.textAlign = "right";
-			ctx.fillText("කාලය", origin.x + graphWidth - 10, origin.y + 30);
-			
-			// Add small '(x)' under කාලය
-			ctx.font = "16px Arial";
-			ctx.fillStyle = "#990000";
-			ctx.textAlign = "right";
-			ctx.fillText("(x)", origin.x + graphWidth + 15, origin.y + 15);
-			
-			// Y-axis label (කැපවීම - Effort)
-			ctx.font = "bold 18px Arial";
-			ctx.textAlign = "left";
-			ctx.fillText("y", origin.x - 15, margin.top - 10);
-			ctx.fillText("කැපවීම", origin.x - 50, margin.top + 20);
-			
-			// Additional annotations
-			ctx.font = "bold 16px Arial";
-			ctx.textAlign = "right";
-			ctx.fillText("(Work", origin.x + graphWidth, margin.top + 80);
-			ctx.fillText("Hard)", origin.x + graphWidth, margin.top + 100);
-		  }
-		  
-		  // Draw arrow head
-		  function drawArrow(x, y, angle) {
-			const arrowSize = 10;
-			ctx.save();
-			ctx.translate(x, y);
-			ctx.rotate(angle);
-			
-			ctx.beginPath();
-			ctx.moveTo(0, 0);
-			ctx.lineTo(-arrowSize, -arrowSize/2);
-			ctx.lineTo(-arrowSize, arrowSize/2);
-			ctx.closePath();
-			ctx.fillStyle = "#990000";
-			ctx.fill();
-			
-			ctx.restore();
-		  }
-		  
-		  // Draw the curve with animation
-		  function animateCurve() {
-			// Define points for the curve
-			const startX = origin.x;
-			const startY = margin.top + 30;
-			
-			const fffX = origin.x + graphWidth * 0.5;
-			const fffY = origin.y;
-			
-			const aaaX = origin.x + graphWidth * 0.85;
-			const aaaY = origin.y - graphHeight * 0.6;
-			
-			// Create points along the curve path
-			const totalPoints = 100;
-			const points = [];
-			
-			// Calculate points for first bezier curve (start to FFF)
-			for (let i = 0; i <= totalPoints/2; i++) {
-			  const t = i / (totalPoints/2);
-			  const p0x = startX;
-			  const p0y = startY;
-			  const p1x = origin.x + graphWidth * 0.25;
-			  const p1y = startY + 50;
-			  const p2x = origin.x + graphWidth * 0.4;
-			  const p2y = fffY - 20;
-			  const p3x = fffX;
-			  const p3y = fffY;
-			  
-			  // Cubic Bezier formula
-			  const x = Math.pow(1-t, 3) * p0x + 
-						3 * Math.pow(1-t, 2) * t * p1x + 
-						3 * (1-t) * Math.pow(t, 2) * p2x + 
-						Math.pow(t, 3) * p3x;
-			  
-			  const y = Math.pow(1-t, 3) * p0y + 
-						3 * Math.pow(1-t, 2) * t * p1y + 
-						3 * (1-t) * Math.pow(t, 2) * p2y + 
-						Math.pow(t, 3) * p3y;
-			  
-			  points.push({x, y});
-			}
-			
-			// Calculate points for second bezier curve (FFF to AAA)
-			for (let i = 0; i <= totalPoints/2; i++) {
-			  const t = i / (totalPoints/2);
-			  const p0x = fffX;
-			  const p0y = fffY;
-			  const p1x = fffX + graphWidth * 0.1;
-			  const p1y = fffY + 20;
-			  const p2x = fffX + graphWidth * 0.2;
-			  const p2y = aaaY + 100;
-			  const p3x = aaaX;
-			  const p3y = aaaY;
-			  
-			  // Cubic Bezier formula
-			  const x = Math.pow(1-t, 3) * p0x + 
-						3 * Math.pow(1-t, 2) * t * p1x + 
-						3 * (1-t) * Math.pow(t, 2) * p2x + 
-						Math.pow(t, 3) * p3x;
-			  
-			  const y = Math.pow(1-t, 3) * p0y + 
-						3 * Math.pow(1-t, 2) * t * p1y + 
-						3 * (1-t) * Math.pow(t, 2) * p2y + 
-						Math.pow(t, 3) * p3y;
-			  
-			  points.push({x, y});
-			}
-			
-			// Animate the drawing of the curve
-			let currentPoint = 0;
-			const animationSpeed = 50; // Lower number = slower animation
-			
-			function drawNextSegment() {
-			  if (currentPoint < points.length - 1) {
-				ctx.beginPath();
-				ctx.moveTo(points[currentPoint].x, points[currentPoint].y);
-				ctx.lineTo(points[currentPoint + 1].x, points[currentPoint + 1].y);
-				ctx.strokeStyle = "#990000";
-				ctx.lineWidth = 2.5;
-				ctx.stroke();
-				
-				currentPoint++;
-				setTimeout(drawNextSegment, animationSpeed);
-			  } else {
-				// Animation complete, add the final elements
-				markFFFPoint();
-				addAAAText();
-				addSinhalaText();
-			  }
-			}
-			
-			// Start the animation
-			drawNextSegment();
-		  }
-		  
-		  // Add AAA text only (no arrow)
-		  function addAAAText() {
-			const aaaX = origin.x + graphWidth * 0.85;
-			const aaaY = origin.y - graphHeight * 0.6;
-			
-			// Add AAA text
-			ctx.font = "bold 18px Arial";
-			ctx.fillStyle = "#990000";
-			ctx.textAlign = "center";
-			ctx.fillText("AAA", aaaX, aaaY - 15);
-		  }
-		  
-		  // Mark FFF point
-		  function markFFFPoint() {
-			const fffX = origin.x + graphWidth * 0.5;
-			const fffY = origin.y;
-			
-			// Draw dot for FFF
-			ctx.beginPath();
-			ctx.arc(fffX, fffY, 4, 0, Math.PI * 2);
-			ctx.fillStyle = "#990000";
-			ctx.fill();
-			
-			// Add FFF text
-			ctx.font = "bold 18px Arial";
-			ctx.fillStyle = "#990000";
-			ctx.textAlign = "center";
-			ctx.fillText("FFF", fffX, fffY + 20);
-		  }
-		  
-		  // Add Sinhala text
-		  function addSinhalaText() {
-			ctx.fillStyle = "#990000";
-			ctx.font = "bold 18px Arial";
-			
-			// "උත්සහයේ" text in middle-right area
-			ctx.textAlign = "center";
-			ctx.fillText("උත්සහයේ", origin.x + graphWidth * 0.65, origin.y - graphHeight * 0.35);
-			ctx.fillText("ප්‍රතිඵලය", origin.x + graphWidth * 0.65, origin.y - graphHeight * 0.25);
-		  }
-		  
-		  // Apply subtle shadow to give depth
-		  function applyShadows() {
-			ctx.shadowColor = 'rgba(153, 0, 0, 0.2)';
-			ctx.shadowBlur = 5;
-			ctx.shadowOffsetX = 2;
-			ctx.shadowOffsetY = 2;
-		  }
-		  
-		  // Draw everything
-		  applyShadows();
-		  drawAxes();
-		  
-		  // Reset shadows for the curve
-		  ctx.shadowColor = 'transparent';
-		  
-		  // Start the animation
-		  animateCurve();
-		});
-			function drawAAAWithoutLine() {
-			const aaaX = origin.x + graphWidth * 0.85;
-			const aaaY = origin.y - graphHeight * 0.6;
-
-			// No line, only AAA label
-			ctx.font = "bold 20px Arial";
-			ctx.fillStyle = "#990000";
-			ctx.textAlign = "center";
-			ctx.fillText("AAA", aaaX, aaaY - 20);
-		}
-
         // Theme toggle functionality
 		const themeToggle = document.getElementById('themeToggle');
 		const themeIcon = themeToggle.querySelector('i');
